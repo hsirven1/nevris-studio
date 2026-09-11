@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Archivo:wdth,wght@62..125,400;62..125,500;62..125,600;62..125,700&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #ECEBE7; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #6A6963; }
+  @keyframes nvPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.35; transform: scale(0.82); } }
+  @keyframes nvTicker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+</style>
+</helmet>
+
+<div style="background: #ECEBE7; color: #111110; font-family: 'Schibsted Grotesk', sans-serif; width: 1440px; margin: 0 auto; position: relative; overflow: hidden;">
+
+  <header style="display: flex; justify-content: space-between; align-items: center; padding: 22px 48px; border-bottom: 1px solid #111110; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+    <span style="display: flex; align-items: center; gap: 10px;">
+      <span style="width: 8px; height: 8px; border-radius: 50%; background: #93E03C; animation: nvPulse 2.4s ease-in-out infinite;"></span>
+      <span>Nevris Studio</span>
+    </span>
+    <span style="display: flex; gap: 26px; color: #6A6963;">
+      <span>Montréal / QC</span>
+      <span>45.50° N</span>
+      <span>EST 09:42</span>
+      <span style="color: #111110;">Est. 2026</span>
+    </span>
+  </header>
+
+  <section data-screen-label="Hero" style="padding: 72px 48px 0;">
+    <div style="display: grid; grid-template-columns: 8fr 4fr; gap: 48px; align-items: start;">
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6A6963; display: flex; gap: 14px; align-items: center;">
+          <span>N°000</span><span style="flex: 1; height: 1px; background: rgba(17,17,16,0.25);"></span><span>Independent product studio</span>
+        </div>
+        <h1 style="margin: 26px 0 0; font-weight: 800; font-size: 128px; line-height: 0.9; letter-spacing: -0.045em;">
+          The studio's<br />working surface,<br /><span style="background-image: linear-gradient(#C9B6F7, #C9B6F7); background-repeat: no-repeat; background-size: 100% 0.82em; background-position: 0 0.18em; padding: 0 8px; margin-left: -8px;">made public.</span>
+        </h1>
+        <div style="margin-top: 34px; display: flex; align-items: flex-end; gap: 40px;">
+          <p style="margin: 0; font-size: 17px; line-height: 1.55; max-width: 40ch;">Nevris builds and releases its own products — AI systems, automation, new interfaces, consumer software. Everything on this page is either shipped, in build, or being figured out right now.</p>
+          <div style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 30px; line-height: 1.15; max-width: 12ch; padding-bottom: 4px;">Not an archive.</div>
+        </div>
+      </div>
+      <div style="border: 1px solid #111110; background: #E4E2DC;">
+        <div style="padding: 12px 16px; border-bottom: 1px solid #111110; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; display: flex; justify-content: space-between;">
+          <span>Currently</span><span style="color: #6A6963;">Aug 2026</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; padding: 13px 16px; border-bottom: 1px solid rgba(17,17,16,0.18); font-size: 14px;"><span style="display: flex; gap: 9px; align-items: center;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #93E03C; animation: nvPulse 2.4s ease-in-out infinite;"></span>Wilder</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em;">IN BUILD</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 13px 16px; border-bottom: 1px solid rgba(17,17,16,0.18); font-size: 14px;"><span style="display: flex; gap: 9px; align-items: center;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #C9B6F7;"></span>Juno</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em;">PROTOTYPE</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 13px 16px; border-bottom: 1px solid rgba(17,17,16,0.18); font-size: 14px;"><span style="display: flex; gap: 9px; align-items: center;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #111110;"></span>Grand Angle Léré</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em;">SHIPPED</span></div>
+        <div style="display: flex; justify-content: space-between; padding: 13px 16px; border-bottom: 1px solid rgba(17,17,16,0.18); font-size: 14px;"><span style="display: flex; gap: 9px; align-items: center;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #111110;"></span>Lab</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em;">7 EXPERIMENTS</span></div>
+        <div style="padding: 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; line-height: 1.7; letter-spacing: 0.08em; color: #6A6963;">OPEN TO CLIENT WORK<br />PRODUCT / AI / INTERFACES</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 56px; border-top: 1px solid #111110; border-bottom: 1px solid #111110; overflow: hidden; white-space: nowrap;">
+      <div style="display: inline-flex; gap: 40px; padding: 13px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; animation: nvTicker 34s linear infinite; width: max-content;">
+        <span style="display: flex; gap: 40px;"><span style="display: flex; align-items: center; gap: 8px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #93E03C;"></span>Currently building</span><span>Product</span><span>·</span><span>AI</span><span>·</span><span>Interfaces</span><span>·</span><span>Automation</span><span>·</span><span>Consumer</span><span>Montréal / CA</span><span>·</span></span>
+        <span style="display: flex; gap: 40px;"><span style="display: flex; align-items: center; gap: 8px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #93E03C;"></span>Currently building</span><span>Product</span><span>·</span><span>AI</span><span>·</span><span>Interfaces</span><span>·</span><span>Automation</span><span>·</span><span>Consumer</span><span>Montréal / CA</span><span>·</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Selected work — index" style="padding: 64px 48px 0;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <h2 style="margin: 0; font-weight: 700; font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace;">Selected work</h2>
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: #6A6963; text-transform: uppercase;">Three worlds / 01 — 03</span>
+    </div>
+  </section>
+
+  <section data-screen-label="Wilder" style="margin-top: 32px; background: #0D0E0F; color: #F2F2F0; padding: 56px 48px 60px;">
+    <div style="display: grid; grid-template-columns: 3fr 9fr; gap: 40px; align-items: start;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; line-height: 1.9; letter-spacing: 0.1em; text-transform: uppercase; color: #8A8A85;">
+        <div style="font-family: 'Archivo', sans-serif; font-variation-settings: 'wdth' 68; font-weight: 600; font-size: 90px; line-height: 0.82; color: #F2F2F0; letter-spacing: 0;">01</div>
+        <div style="margin-top: 22px; display: flex; align-items: center; gap: 9px; color: #93E03C;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #93E03C; animation: nvPulse 2.4s ease-in-out infinite;"></span>In build</div>
+        <div style="margin-top: 14px;">Own product<br />AI operations<br />2026 —</div>
+        <div style="margin-top: 22px; padding-top: 14px; border-top: 1px solid #2A2C2E; color: #F2F2F0;">Stack<br /><span style="color: #8A8A85;">Agents · event graph<br />Retrieval · scheduling</span></div>
+      </div>
+      <div>
+        <h3 style="margin: 0; font-weight: 700; font-size: 96px; line-height: 0.92; letter-spacing: -0.04em;">Wilder</h3>
+        <p style="margin: 18px 0 0; font-size: 19px; line-height: 1.5; max-width: 52ch; color: #D8D8D4;">An AI-powered operations workspace. It reads program data, milestones, emails and activity, then tells the team what to do next — with the reasoning attached.</p>
+
+        <div style="margin-top: 34px; border: 1px solid #2A2C2E; background: #131517;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 11px 16px; border-bottom: 1px solid #2A2C2E; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8A85;">
+            <span style="display: flex; gap: 22px;"><span style="color: #F2F2F0;">Next actions</span><span>Signals</span><span>Programs</span><span>Threads</span></span>
+            <span style="color: #93E03C;">LIVE · 14 SIGNALS</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 52px 1fr 190px 140px 90px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85; border-bottom: 1px solid #2A2C2E; letter-spacing: 0.1em; text-transform: uppercase;">
+            <div style="padding: 9px 0 9px 16px;">#</div><div style="padding: 9px 0;">Recommended action</div><div style="padding: 9px 0;">Trigger</div><div style="padding: 9px 0;">Program</div><div style="padding: 9px 0;">Conf.</div>
+          </div>
+          <div style="display: grid; grid-template-columns: 52px 1fr 190px 140px 90px; font-size: 14px; border-bottom: 1px solid #1E2022; align-items: center; background: rgba(147,224,60,0.06);">
+            <div style="padding: 14px 0 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">01</div><div style="padding: 14px 0;">Re-baseline Q4 milestone after vendor slip</div><div style="padding: 14px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">Email thread · 2h</div><div style="padding: 14px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">Atlas</div><div style="padding: 14px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #93E03C;">0.94</div>
+          </div>
+          <div style="display: grid; grid-template-columns: 52px 1fr 190px 140px 90px; font-size: 14px; border-bottom: 1px solid #1E2022; align-items: center;">
+            <div style="padding: 14px 0 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">02</div><div style="padding: 14px 0;">Escalate blocked approval to steering committee</div><div style="padding: 14px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">Idle 6d</div><div style="padding: 14px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">Northline</div><div style="padding: 14px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">0.81</div>
+          </div>
+          <div style="display: grid; grid-template-columns: 52px 1fr 190px 140px 90px; font-size: 14px; align-items: center;">
+            <div style="padding: 14px 0 14px 16px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">03</div><div style="padding: 14px 0;">Draft status note — 3 activities closed this week</div><div style="padding: 14px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">Activity log</div><div style="padding: 14px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">Atlas</div><div style="padding: 14px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #8A8A85;">0.77</div>
+          </div>
+          <div style="border-top: 1px solid #2A2C2E; height: 210px; background: repeating-linear-gradient(115deg, #17191B 0 10px, #131517 10px 20px); display: flex; align-items: flex-end; padding: 14px;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #8A8A85;">[ DROP: WILDER UI — SIGNAL GRAPH, FULL WIDTH ]</span>
+          </div>
+        </div>
+        <div style="margin-top: 22px; display: flex; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+          <a href="#wilder" style="border: 1px solid #F2F2F0; padding: 11px 18px;">Open case →</a>
+          <span style="border: 1px solid #2A2C2E; padding: 11px 18px; color: #8A8A85;">Private beta</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Juno" style="background: #F0E3D4; color: #171310; padding: 84px 48px 76px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">
+      <span style="display: flex; gap: 18px; align-items: center;"><span style="font-family: 'Archivo', sans-serif; font-variation-settings: 'wdth' 68; font-weight: 600; font-size: 44px; letter-spacing: 0;">02</span><span>Own product · Consumer</span></span>
+      <span style="display: flex; align-items: center; gap: 9px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #C9B6F7;"></span>Prototype</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 5fr 4fr 3fr; gap: 40px; align-items: end; margin-top: 40px;">
+      <div>
+        <h3 style="margin: 0; font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 118px; line-height: 0.9; letter-spacing: -0.02em;">Juno</h3>
+        <p style="margin: 22px 0 0; font-family: 'Instrument Serif', serif; font-size: 34px; line-height: 1.2;">What comes after work is not a gap in a calendar. It's forty years.</p>
+      </div>
+      <div style="height: 420px; background: repeating-linear-gradient(115deg, #E4D5C4 0 10px, #F0E3D4 10px 20px); border: 1px solid #171310; display: flex; align-items: flex-end; padding: 14px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">[ DROP: JUNO — MOBILE PLAN VIEW ]</span>
+      </div>
+      <div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6;">Juno explores how AI can help people navigate life after retirement — personalised plans, activities near them, resources, and a guide that actually knows their situation.</p>
+        <div style="margin-top: 26px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; line-height: 2; text-transform: uppercase; color: #6E625A;">
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(23,19,16,0.2);"><span>Testers</span><span style="color: #171310;">40</span></div>
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(23,19,16,0.2);"><span>Cohort age</span><span style="color: #171310;">58 — 74</span></div>
+          <div style="display: flex; justify-content: space-between;"><span>Next</span><span style="color: #171310;">Closed beta</span></div>
+        </div>
+        <a href="#juno" style="display: inline-block; margin-top: 26px; border: 1px solid #171310; padding: 11px 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">Open case →</a>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 24px; margin-top: 56px; align-items: flex-start;">
+      <div style="flex: 2; height: 230px; background: repeating-linear-gradient(115deg, #E4D5C4 0 10px, #F0E3D4 10px 20px); border: 1px solid #171310; display: flex; align-items: flex-end; padding: 14px;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">[ DROP: PORTRAIT — TESTER AT HOME ]</span></div>
+      <div style="flex: 1; padding-top: 8px; font-family: 'Instrument Serif', serif; font-style: italic; font-size: 26px; line-height: 1.25;">"It stopped asking me what I wanted to do and started telling me what was on Thursday."</div>
+      <div style="flex: 1; height: 230px; background: #C9B6F7; border: 1px solid #171310; display: flex; align-items: flex-end; padding: 14px;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">[ DROP: DETAIL ]</span></div>
+    </div>
+  </section>
+
+  <section data-screen-label="Grand Angle Léré" style="background: #14181A; color: #EFEFEA; padding: 0;">
+    <div style="position: relative; height: 620px; background: repeating-linear-gradient(115deg, #1C2124 0 11px, #14181A 11px 22px); border-bottom: 1px solid #2A3033;">
+      <div style="position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 26px;">
+        <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #8A9095;">[ DROP: FULL-BLEED — GALLERY WALL, VISITOR WITH PHONE ]</span>
+      </div>
+      <div style="position: absolute; top: 40px; left: 48px; font-family: 'Archivo', sans-serif; font-variation-settings: 'wdth' 68; font-weight: 600; font-size: 44px;">03</div>
+      <div style="position: absolute; top: 46px; right: 48px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; display: flex; gap: 18px; align-items: center;">
+        <span style="color: #8A9095;">Client work · Computer vision</span><span style="display: flex; align-items: center; gap: 9px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #EFEFEA;"></span>Shipped</span>
+      </div>
+
+      <div style="position: absolute; left: 300px; top: 150px; width: 300px; height: 330px; border: 1px solid rgba(239,239,234,0.35);">
+        <div style="position: absolute; top: -1px; left: -1px; width: 22px; height: 22px; border-top: 2px solid #93E03C; border-left: 2px solid #93E03C;"></div>
+        <div style="position: absolute; top: -1px; right: -1px; width: 22px; height: 22px; border-top: 2px solid #93E03C; border-right: 2px solid #93E03C;"></div>
+        <div style="position: absolute; bottom: -1px; left: -1px; width: 22px; height: 22px; border-bottom: 2px solid #93E03C; border-left: 2px solid #93E03C;"></div>
+        <div style="position: absolute; bottom: -1px; right: -1px; width: 22px; height: 22px; border-bottom: 2px solid #93E03C; border-right: 2px solid #93E03C;"></div>
+        <div style="position: absolute; bottom: 12px; left: 12px; background: #93E03C; color: #0D0E0F; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; padding: 5px 8px;">MATCH 0.97 · CAT. N°142</div>
+      </div>
+      <div style="position: absolute; left: 640px; top: 300px; width: 190px; height: 150px; border: 1px dashed rgba(239,239,234,0.28);">
+        <div style="position: absolute; bottom: 10px; left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: rgba(239,239,234,0.6);">SEARCHING…</div>
+      </div>
+
+      <h3 style="position: absolute; bottom: 44px; right: 48px; margin: 0; text-align: right; font-weight: 700; font-size: 84px; line-height: 0.9; letter-spacing: -0.04em;">Grand Angle<br />Léré</h3>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 4fr 4fr 4fr; gap: 1px; background: #2A3033;">
+      <div style="background: #14181A; padding: 34px 48px 40px;">
+        <p style="margin: 0; font-size: 19px; line-height: 1.5;">A mobile cultural experience. Point the camera at an artwork, the app recognises it and opens the exhibition around it — context, audio, route, related works.</p>
+        <a href="#lere" style="display: inline-block; margin-top: 26px; border: 1px solid #EFEFEA; padding: 11px 18px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;">Open case →</a>
+      </div>
+      <div style="background: #14181A; padding: 34px 30px 40px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A9095; line-height: 2;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #2A3033;"><span>Works indexed</span><span style="color: #EFEFEA;">142</span></div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #2A3033;"><span>Recognition</span><span style="color: #EFEFEA;">On-device</span></div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #2A3033;"><span>Latency</span><span style="color: #93E03C;">180 ms</span></div>
+        <div style="display: flex; justify-content: space-between;"><span>Live since</span><span style="color: #EFEFEA;">2025</span></div>
+      </div>
+      <div style="background: #14181A; padding: 0;">
+        <div style="height: 100%; min-height: 240px; background: repeating-linear-gradient(115deg, #1C2124 0 11px, #14181A 11px 22px); display: flex; align-items: flex-end; padding: 14px;"><span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #8A9095;">[ DROP: RECOGNITION SCREEN ]</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Lab" style="padding: 76px 48px 0;">
+    <div style="display: grid; grid-template-columns: 8fr 4fr; gap: 48px; align-items: end;">
+      <h2 style="margin: 0; font-weight: 800; font-size: 96px; line-height: 0.9; letter-spacing: -0.04em;">The Lab <span style="font-family: 'Instrument Serif', serif; font-weight: 400; font-style: italic; letter-spacing: -0.01em;">is open</span></h2>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: #46453F;">Smaller experiments, agents and prototypes that don't warrant a case study. Some become products. Most stay here.</p>
+    </div>
+
+    <div style="margin-top: 40px; border-top: 1px solid #111110;">
+      <div style="display: grid; grid-template-columns: 70px 1fr 220px 150px 130px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(17,17,16,0.2);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6A6963;">L—01</div>
+        <div style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em;">Inbox Cartographer</div>
+        <div style="font-size: 15px; color: #46453F;">Maps a mailbox into projects, not folders</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 9px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #93E03C; animation: nvPulse 2.4s ease-in-out infinite;"></span>Running</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-align: right; color: #6A6963;">AUG 2026</div>
+      </div>
+      <div style="display: grid; grid-template-columns: 70px 1fr 220px 150px 130px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(17,17,16,0.2); background: #C9B6F7; margin: 0 -48px; padding-left: 48px; padding-right: 48px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #3E3358;">L—02</div>
+        <div style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em;">Meeting Residue</div>
+        <div style="font-size: 15px;">Turns a call into commitments with owners</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Experiment</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-align: right;">JUL 2026</div>
+      </div>
+      <div style="display: grid; grid-template-columns: 70px 1fr 220px 150px 130px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(17,17,16,0.2);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6A6963;">L—03</div>
+        <div style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em;">Tactile Cursor</div>
+        <div style="font-size: 15px; color: #46453F;">Pointer that reports what it can do</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #6A6963;">Prototype</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-align: right; color: #6A6963;">JUN 2026</div>
+      </div>
+      <div style="display: grid; grid-template-columns: 70px 1fr 220px 150px 130px; align-items: center; padding: 18px 0; border-bottom: 1px solid rgba(17,17,16,0.2);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6A6963;">L—04</div>
+        <div style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em;">Ambient Standup</div>
+        <div style="font-size: 15px; color: #46453F;">A team status page nobody has to write</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; display: flex; align-items: center; gap: 9px;"><span style="width: 7px; height: 7px; border-radius: 50%; background: #93E03C; animation: nvPulse 2.4s ease-in-out infinite;"></span>Running</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-align: right; color: #6A6963;">MAY 2026</div>
+      </div>
+      <div style="display: grid; grid-template-columns: 70px 1fr 220px 150px 130px; align-items: center; padding: 18px 0; border-bottom: 1px solid #111110;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6A6963;">L—05</div>
+        <div style="font-size: 26px; font-weight: 600; letter-spacing: -0.02em;">Slow Search</div>
+        <div style="font-size: 15px; color: #46453F;">Retrieval that shows its reasoning first</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #6A6963;">Archived</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-align: right; color: #6A6963;">MAR 2026</div>
+      </div>
+      <div style="padding: 16px 0; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; display: flex; justify-content: space-between; color: #6A6963;">
+        <a href="#lab" style="color: #111110;">All 7 experiments →</a>
+        <span>2 unlisted</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Studio" style="margin-top: 72px; background: #111110; color: #F2F2F0; padding: 84px 48px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #8A8A85; display: flex; gap: 14px; align-items: center;">
+      <span>N°004</span><span style="flex: 1; height: 1px; background: #2A2A28;"></span><span>Studio</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 7fr 5fr; gap: 56px; margin-top: 36px; align-items: start;">
+      <div style="font-weight: 700; font-size: 62px; line-height: 1.02; letter-spacing: -0.035em;">Nevris works on problems where <span style="font-family: 'Instrument Serif', serif; font-weight: 400; font-style: italic; letter-spacing: -0.01em;">the interface</span> is the hard part — not the model, not the pitch.</div>
+      <div>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #D8D8D4;">We build our own products and take on a small number of engagements a year: product strategy, AI systems that have to earn trust, and interfaces for software that behaves in new ways. Small team, direct access, no layers.</p>
+        <div style="margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #2A2A28; border: 1px solid #2A2A28;">
+          <div style="background: #111110; padding: 18px;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8A85;">We do</div><div style="margin-top: 8px; font-size: 15px; line-height: 1.6;">Product direction<br />AI systems<br />Interface design<br />Prototypes that ship</div></div>
+          <div style="background: #111110; padding: 18px;"><div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #8A8A85;">We don't</div><div style="margin-top: 8px; font-size: 15px; line-height: 1.6; color: #8A8A85;">Retainers<br />Decks without builds<br />Rebrands<br />Headcount</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="About" style="padding: 56px 48px; border-bottom: 1px solid #111110;">
+    <div style="display: grid; grid-template-columns: 120px 5fr 4fr; gap: 40px; align-items: start;">
+      <div style="height: 150px; background: repeating-linear-gradient(115deg, #DEDCD6 0 9px, #ECEBE7 9px 18px); border: 1px solid #111110;"></div>
+      <div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A6963;">N°005 — Founder</div>
+        <div style="margin-top: 12px; font-size: 30px; font-weight: 600; letter-spacing: -0.02em;">Harold Sirven</div>
+        <p style="margin: 10px 0 0; font-size: 16px; line-height: 1.6; max-width: 52ch;">Montréal-based product leader and builder. More than ten years building digital products; Nevris is where that work continues under its own name.</p>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #6A6963; line-height: 2.1;">
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(17,17,16,0.2);"><span>Based</span><span style="color: #111110;">Montréal, QC</span></div>
+        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid rgba(17,17,16,0.2);"><span>Practice</span><span style="color: #111110;">10+ years</span></div>
+        <div style="display: flex; justify-content: space-between;"><span>Elsewhere</span><span style="color: #111110;"><a href="#linkedin">LinkedIn</a> · <a href="#x">X</a> · <a href="#gh">GitHub</a></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Contact" style="padding: 96px 48px 120px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #6A6963; display: flex; gap: 14px; align-items: center;">
+      <span>N°006</span><span style="flex: 1; height: 1px; background: rgba(17,17,16,0.25);"></span><span style="display: flex; align-items: center; gap: 9px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #93E03C; animation: nvPulse 2.4s ease-in-out infinite;"></span>Replying this week</span>
+    </div>
+    <h2 style="margin: 28px 0 0; font-weight: 800; font-size: 150px; line-height: 0.86; letter-spacing: -0.05em;">Tell us what<br />you're <span style="background-image: linear-gradient(#C9B6F7, #C9B6F7); background-repeat: no-repeat; background-size: 100% 0.8em; background-position: 0 0.2em; padding: 0 10px; margin-left: -10px;">building.</span></h2>
+    <div style="margin-top: 44px; display: grid; grid-template-columns: 6fr 3fr 3fr; gap: 40px; align-items: end;">
+      <a href="mailto:hello@nevris.studio" style="font-family: 'Instrument Serif', serif; font-size: 56px; line-height: 1; border-bottom: 1px solid #111110; padding-bottom: 8px;">hello@nevris.studio</a>
+      <div style="font-size: 16px; line-height: 1.6; color: #46453F;">Products, ideas, collaborations, or a role. A short note is enough.</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #6A6963; line-height: 2;">
+        <div>Client work — open</div>
+        <div>Prototype sprints — open</div>
+        <div>Full-time roles — talking</div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid #111110; padding: 20px 48px 90px; display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #6A6963;">
+    <span style="color: #111110;">Nevris Studio</span>
+    <span>Montréal / CA</span>
+    <span>Product · AI · Interfaces</span>
+    <span>© 2026</span>
+  </footer>
+
+  <nav style="position: fixed; left: 50%; transform: translateX(-50%); bottom: 26px; display: flex; align-items: center; gap: 4px; background: #ECEBE7; border: 1px solid #111110; padding: 6px 6px 6px 16px; border-radius: 999px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; box-shadow: 0 8px 30px rgba(17,17,16,0.14); z-index: 20;">
+    <span style="display: flex; align-items: center; gap: 8px; padding-right: 12px; border-right: 1px solid rgba(17,17,16,0.25);"><span style="width: 7px; height: 7px; border-radius: 50%; background: #93E03C; animation: nvPulse 2.4s ease-in-out infinite;"></span>Nevris</span>
+    <a href="#work" style="padding: 8px 12px;">Work</a>
+    <a href="#lab" style="padding: 8px 12px;">Lab</a>
+    <a href="#studio" style="padding: 8px 12px;">Studio</a>
+    <a href="mailto:hello@nevris.studio" style="padding: 8px 16px; background: #111110; color: #ECEBE7; border-radius: 999px;">Contact</a>
+  </nav>
+
+</div>
+
+</x-dc>
+</body>
+</html>

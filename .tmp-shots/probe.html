@@ -1,0 +1,7 @@
+<!doctype html><meta charset=utf-8>
+<script>
+(async () => {
+  const page = await fetch('http://localhost:3000/').then(r=>r.text());
+  document.open(); document.write(page); document.close();
+})();
+</script>
