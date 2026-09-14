@@ -6,7 +6,7 @@ const MEDIA = {
 } as const;
 
 /**
- * Right-column media: dashboard overview, then Actions workflow video.
+ * Right-column media: Actions workflow video first, then dashboard overview.
  */
 export function OpsShowcase() {
   return (
@@ -20,6 +20,14 @@ export function OpsShowcase() {
         aria-hidden
       />
 
+      <p className="relative z-[1] m-0 max-w-[36rem] text-[15px] leading-[1.45] text-ink-60 md:text-[16px]">
+        Rook turns operational signals into reviewed, actionable next steps.
+      </p>
+
+      <div className="relative z-[1]">
+        <OpsWorkflowVideo />
+      </div>
+
       <div className="relative z-[1]">
         <OpsScreen
           src={MEDIA.dashboard}
@@ -28,10 +36,6 @@ export function OpsShowcase() {
           priority
           className="w-full max-w-[1024px]"
         />
-      </div>
-
-      <div className="relative z-[1]">
-        <OpsWorkflowVideo />
       </div>
     </div>
   );

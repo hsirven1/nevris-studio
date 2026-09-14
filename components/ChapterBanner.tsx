@@ -94,8 +94,8 @@ export function ChapterBanner({ title, showCue = true }: ChapterBannerProps) {
         <div className="absolute top-[-40%] right-[6%] h-[175%] w-px origin-top-right -rotate-[33deg] bg-ground/20 md:right-[8%] md:bg-ground/18" />
       </div>
 
-      <div className="gutter-x relative z-10 py-[clamp(2.25rem,5.5vh,3.5rem)] md:py-[clamp(2.75rem,6vh,4rem)]">
-        <div className="flex items-center gap-8 pl-4 md:gap-10 md:pl-5 lg:gap-12">
+      <div className="gutter-x relative z-10 py-8 md:py-[clamp(2.75rem,6vh,4rem)]">
+        <div className="flex items-center gap-5 pl-1 md:gap-10 md:pl-5 lg:gap-12">
           <motion.h2
             className="type-work-intro m-0 max-w-[16ch] font-bold tracking-[-0.04em] text-ground"
             initial={reduce ? false : { opacity: 0, y: 14 }}

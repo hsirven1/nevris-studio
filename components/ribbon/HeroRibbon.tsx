@@ -36,7 +36,7 @@ export function HeroRibbon() {
   return (
     <div
       ref={hostRef}
-      className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
+      className="pointer-events-none absolute inset-0 z-[1] overflow-hidden max-md:translate-x-[18%] max-md:scale-[0.72] max-md:opacity-90 origin-top-right"
       aria-hidden
     >
       {!DEBUG_BASELINE && (

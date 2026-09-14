@@ -15,19 +15,17 @@ export default function Home() {
       <div className="nv-grain" aria-hidden />
       <ContactProvider>
         <div className="relative z-[4]">
-          {/* Hero zone — lavender + animation clip exactly at the black banner */}
-          <div className="relative overflow-hidden">
-            <SiteAtmosphere />
-            <HeroAntigravity />
-            <StatusBar />
-            <Hero />
-            <div
-              className="h-[clamp(2.75rem,7vh,4.5rem)]"
-              aria-hidden
-            />
+          {/* Hero almost fills the viewport; black bar peeks in as a scroll cue */}
+          <div className="relative">
+            <div className="relative flex min-h-[min(100dvh,44rem)] flex-col overflow-hidden md:min-h-[calc(100dvh-6.5rem)]">
+              <SiteAtmosphere />
+              <HeroAntigravity />
+              <StatusBar />
+              <Hero />
+            </div>
+            <SelectedWorkHeader />
           </div>
 
-          <SelectedWorkHeader />
           <SelectedWork />
           <HowWeWork />
           <Contact />

@@ -67,7 +67,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-[80] flex items-end justify-center p-0 sm:items-center sm:p-6"
+      className="fixed inset-0 z-[80] flex items-end justify-center p-0 md:items-center md:p-6"
       role="presentation"
     >
       <button
@@ -81,7 +81,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative z-[1] flex max-h-[min(92vh,44rem)] w-full max-w-[34rem] flex-col overflow-hidden rounded-t-[1.25rem] border border-ink/10 bg-[#f7f6f2] shadow-[0_28px_80px_-28px_rgba(17,17,16,0.55)] sm:rounded-[1.25rem]"
+        className="relative z-[1] flex max-h-[min(96dvh,44rem)] w-full max-w-[34rem] flex-col overflow-hidden rounded-t-[1.25rem] border border-ink/10 bg-[#f7f6f2] shadow-[0_28px_80px_-28px_rgba(17,17,16,0.55)] md:max-h-[min(92vh,44rem)] md:rounded-[1.25rem]"
       >
         <div className="flex items-start justify-between gap-4 border-b border-ink/10 px-6 pt-6 pb-4 sm:px-7">
           <div>

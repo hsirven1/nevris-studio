@@ -101,6 +101,7 @@ export function GrandAngleShowcase() {
               <DeviceVideo
                 src={MEDIA.scan}
                 alt="Artwork scanning — point the camera at a photograph on display"
+                showIsland={false}
               />
             </motion.div>
           </div>
@@ -119,21 +120,25 @@ export function GrandAngleShowcase() {
               src={STILLS.home}
               alt="Festival home — overview and scanner entry"
               sizes="(max-width: 1023px) 45vw, 280px"
+              showIsland={false}
             />
             <DeviceStill
               src={STILLS.exhibitions}
               alt="Exhibitions list"
               sizes="(max-width: 1023px) 45vw, 280px"
+              showIsland={false}
             />
             <DeviceStill
               src={STILLS.map}
               alt="Festival map"
               sizes="(max-width: 1023px) 45vw, 280px"
+              showIsland={false}
             />
             <DeviceStill
               src={STILLS.scanResult}
               alt="Exhibition photos — In Memoria"
               sizes="(max-width: 1023px) 45vw, 280px"
+              showIsland={false}
             />
           </div>
         ) : (
@@ -151,6 +156,7 @@ export function GrandAngleShowcase() {
                 src={STILLS.home}
                 alt="Festival home — overview and scanner entry"
                 sizes="280px"
+                showIsland={false}
               />
             </div>
             <div className="relative z-[3] w-[26%] shrink-0 origin-bottom">
@@ -159,6 +165,7 @@ export function GrandAngleShowcase() {
                 alt="Exhibitions list"
                 sizes="300px"
                 priority
+                showIsland={false}
               />
             </div>
             <div className="relative z-[2] w-[23%] shrink-0 origin-bottom rotate-[3.5deg]">
@@ -166,6 +173,7 @@ export function GrandAngleShowcase() {
                 src={STILLS.map}
                 alt="Festival map"
                 sizes="280px"
+                showIsland={false}
               />
             </div>
             <div className="relative z-[1] w-[23%] shrink-0 origin-bottom rotate-[6deg]">
@@ -173,6 +181,7 @@ export function GrandAngleShowcase() {
                 src={STILLS.scanResult}
                 alt="Exhibition photos — In Memoria"
                 sizes="280px"
+                showIsland={false}
               />
             </div>
           </div>

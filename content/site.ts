@@ -9,8 +9,8 @@ export const site = {
       "that feel simple.",
     ],
     highlight: "intelligent",
-    body: "Nevris is a product studio crafting ambitious digital experiences, with a focus on AI-powered products and agentic systems.",
   },
+
   workPanel: {
     label: "Work",
     footer: ["Open to client work", "Product / AI / Interfaces"],

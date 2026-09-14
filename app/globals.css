@@ -147,13 +147,13 @@
   }
 
   .type-hero {
-    font-size: 4rem;
-    line-height: 0.9;
+    font-size: 3rem;
+    line-height: 0.92;
     letter-spacing: -0.045em;
   }
 
   .type-contact {
-    font-size: 2.5rem;
+    font-size: 2.35rem;
     line-height: 0.95;
     letter-spacing: -0.04em;
   }
@@ -211,7 +211,7 @@
 
   /* Work section intro — black band chapter title */
   .type-work-intro {
-    font-size: 2.75rem;
+    font-size: 2.5rem;
     line-height: 0.98;
     letter-spacing: -0.04em;
   }
@@ -340,7 +340,7 @@
 
   @media (min-width: 768px) {
     .type-hero {
-      font-size: 4.75rem;
+      font-size: 4.25rem;
       line-height: 0.94;
     }
     .type-contact {
@@ -383,7 +383,7 @@
 
   @media (min-width: 1024px) {
     .type-hero {
-      font-size: 5.75rem;
+      font-size: 5.15rem;
       line-height: 0.94;
     }
     .type-contact {
@@ -426,7 +426,7 @@
 
   @media (min-width: 1280px) {
     .type-hero {
-      font-size: 92px;
+      font-size: 82px;
       line-height: 0.94;
     }
   }
@@ -645,6 +645,26 @@
 
   .nv-grain {
     opacity: 0.03;
+  }
+
+  .marker {
+    padding: 0 5px;
+    margin-left: -5px;
+    background-size: 100% 0.78em;
+  }
+
+  .mobile-visual {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .mobile-visual > img,
+  .mobile-visual .product-still {
+    width: 100%;
+    height: auto;
+    max-height: inherit;
+    object-fit: contain;
   }
 }
 

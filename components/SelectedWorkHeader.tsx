@@ -14,7 +14,10 @@ export function SelectedWorkHeader() {
       className="relative z-[5] overflow-x-clip bg-ground"
     >
       <ChapterBanner title={site.selectedWork.title} />
-      <div className="h-[clamp(2rem,5vh,3.25rem)] bg-ground" aria-hidden />
+      <div
+        className="h-8 bg-ground md:h-[clamp(2rem,5vh,3.25rem)]"
+        aria-hidden
+      />
     </section>
   );
 }
