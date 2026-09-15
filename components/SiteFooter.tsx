@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useContact } from "@/components/ContactProvider";
 import { site } from "@/content/site";
 
@@ -18,6 +19,9 @@ export function SiteFooter() {
           <div>
             <p className="m-0 text-[16px] font-semibold tracking-[-0.02em] text-[#f2f1ec]">
               {footer.brand}
+            </p>
+            <p className="mt-1.5 mb-0 text-[13px] text-[#e8e6e1]/55">
+              {footer.foundedBy}
             </p>
             <a
               href={`mailto:${email}`}
@@ -38,6 +42,14 @@ export function SiteFooter() {
                 >
                   {item.label}
                 </button>
+              ) : item.href.startsWith("/") ? (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-[14px] text-[#e8e6e1]/80"
+                >
+                  {item.label}
+                </Link>
               ) : (
                 <a
                   key={item.href}
@@ -75,11 +87,14 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Desktop — unchanged 3-col */}
+        {/* Desktop — 3-col */}
         <div className="hidden grid-cols-1 gap-10 md:grid md:grid-cols-3 md:gap-8 lg:gap-12">
           <div className="max-w-[22rem]">
             <p className="m-0 text-[15px] font-semibold tracking-[-0.02em] text-[#f2f1ec] md:text-[16px]">
               {footer.brand}
+            </p>
+            <p className="mt-1.5 mb-0 text-[13px] text-[#e8e6e1]/55 md:text-[14px]">
+              {footer.foundedBy}
             </p>
             <p className="mt-2 mb-0 text-[13px] leading-[1.5] text-[#e8e6e1]/65 md:text-[14px]">
               {footer.descriptor}
@@ -89,7 +104,7 @@ export function SiteFooter() {
           <div className="md:justify-self-center">
             <nav
               aria-label="Footer"
-              className="flex flex-col gap-2.5 md:gap-2.5 lg:flex-row lg:gap-x-7"
+              className="flex flex-col gap-2.5 md:gap-2.5 lg:flex-row lg:flex-wrap lg:gap-x-7"
             >
               {footer.nav.map((item) =>
                 item.href === "#contact" ? (
@@ -101,6 +116,14 @@ export function SiteFooter() {
                   >
                     {item.label}
                   </button>
+                ) : item.href.startsWith("/") ? (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="text-[13px] tracking-[0.01em] text-[#e8e6e1]/80 transition-colors duration-200 hover:text-[#f2f1ec] md:text-[14px]"
+                  >
+                    {item.label}
+                  </Link>
                 ) : (
                   <a
                     key={item.href}

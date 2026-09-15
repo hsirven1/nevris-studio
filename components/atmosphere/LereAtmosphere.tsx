@@ -10,8 +10,7 @@ import {
 } from "motion/react";
 
 /**
- * Grand Angle — gallery calm: soft chalk / slate / warm exhibition washes.
- * Crop-mark whisper kept; soft planes carry the Juno-family language.
+ * Grand Angle — chalk / slate / warm washes as square, axis-aligned blocks.
  */
 export function LereAtmosphere() {
   const reduce = useReducedMotion();
@@ -20,7 +19,6 @@ export function LereAtmosphere() {
   const p = progress ?? fallback;
 
   const planeX = useTransform(p, [0, 1], ["-4%", "3%"]);
-  const planeRotate = useTransform(p, [0, 1], [-6, -2]);
   const warmX = useTransform(p, [0, 1], ["5%", "-2%"]);
   const frameInset = useTransform(p, [0, 1], [22, 12]);
 
@@ -36,15 +34,8 @@ export function LereAtmosphere() {
         className="absolute top-[4%] right-[-8%] h-[62%] w-[48%] max-md:right-[-14%] max-md:w-[58%]"
       >
         <motion.div
-          className="h-full w-full rounded-[2rem] bg-[rgba(239,239,234,0.055)] max-md:opacity-80"
-          style={
-            reduce
-              ? undefined
-              : {
-                  x: planeX,
-                  rotate: planeRotate,
-                }
-          }
+          className="h-full w-full rounded-none bg-[rgba(239,239,234,0.055)] max-md:opacity-80"
+          style={reduce ? undefined : { x: planeX }}
         />
       </AmbientDrift>
 
@@ -56,22 +47,22 @@ export function LereAtmosphere() {
         className="absolute top-[28%] left-[-10%] h-[48%] w-[38%] max-md:hidden"
       >
         <motion.div
-          className="h-full w-full rounded-[2rem] bg-[rgba(120,145,160,0.11)]"
+          className="h-full w-full rounded-none bg-[rgba(120,145,160,0.11)]"
           style={reduce ? undefined : { x: warmX }}
         />
       </AmbientDrift>
 
-      {/* Warm print accent — soft and distant */}
+      {/* Warm print accent — square, distant */}
       <AmbientDrift
         amplitude={7}
         duration={34}
         delay={0.4}
         className="absolute right-[12%] bottom-[-10%] h-[40%] w-[34%] max-md:hidden"
       >
-        <div className="h-full w-full rounded-full bg-[rgba(176,148,118,0.12)] blur-2xl" />
+        <div className="h-full w-full rounded-none bg-[rgba(176,148,118,0.12)]" />
       </AmbientDrift>
 
-      {/* Quiet crop marks — gallery framing, not scaffolding */}
+      {/* Quiet crop marks — gallery framing */}
       <AmbientDrift amplitude={4} duration={32} className="absolute inset-0 max-md:hidden">
         <motion.div
           className="absolute border-t border-l border-[rgba(239,239,234,0.28)]"

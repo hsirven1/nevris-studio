@@ -10,8 +10,7 @@ import {
 } from "motion/react";
 
 /**
- * AI Executive Assistant — cooler, more geometric, still Juno-family soft.
- * Slightly sharper radii; restrained slate / cool gray / quiet lavender.
+ * Rook — slate / panel / cyan as square, axis-aligned blocks.
  */
 export function OpsAtmosphere() {
   const reduce = useReducedMotion();
@@ -20,7 +19,6 @@ export function OpsAtmosphere() {
   const p = progress ?? fallback;
 
   const planeX = useTransform(p, [0, 1], ["3%", "-2%"]);
-  const planeRotate = useTransform(p, [0, 1], [1, 3]);
   const coolX = useTransform(p, [0, 1], ["-3%", "2%"]);
 
   return (
@@ -35,15 +33,8 @@ export function OpsAtmosphere() {
         className="absolute top-[-8%] right-[-8%] h-[58%] w-[46%] max-md:right-[-14%] max-md:w-[58%]"
       >
         <motion.div
-          className="h-full w-full rounded-[1.35rem] bg-[rgba(148,168,186,0.22)] max-md:opacity-70"
-          style={
-            reduce
-              ? undefined
-              : {
-                  x: planeX,
-                  rotate: planeRotate,
-                }
-          }
+          className="h-full w-full rounded-none bg-[rgba(148,168,186,0.22)] max-md:opacity-70"
+          style={reduce ? undefined : { x: planeX }}
         />
       </AmbientDrift>
 
@@ -55,19 +46,19 @@ export function OpsAtmosphere() {
         className="absolute top-[36%] left-[-6%] h-[42%] w-[32%] max-md:hidden"
       >
         <motion.div
-          className="h-full w-full rounded-[1.35rem] bg-[rgba(228,226,220,0.75)]"
+          className="h-full w-full rounded-none bg-[rgba(228,226,220,0.75)]"
           style={reduce ? undefined : { x: coolX }}
         />
       </AmbientDrift>
 
-      {/* Quiet lavender — AI-forward without glow cliché */}
+      {/* Quiet cyan — cool balance */}
       <AmbientDrift
         amplitude={6}
         duration={32}
         delay={0.6}
         className="absolute right-[22%] bottom-[-8%] h-[36%] w-[28%] max-md:hidden"
       >
-        <div className="h-full w-full rounded-[1.25rem] bg-[rgba(201,182,247,0.16)]" />
+        <div className="h-full w-full rounded-none bg-[rgba(102,196,255,0.16)]" />
       </AmbientDrift>
 
       {/* Geometric alignment — one horizontal + one vertical hairline */}

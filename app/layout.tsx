@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {
   Archivo,
+  Bricolage_Grotesque,
   Instrument_Serif,
   JetBrains_Mono,
   Schibsted_Grotesk,
@@ -36,6 +37,13 @@ const archivo = Archivo({
   display: "swap",
 });
 
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Nevris Studio — Building intelligent products that feel simple.",
   description:
@@ -46,7 +54,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${schibsted.variable} ${instrument.variable} ${jetbrains.variable} ${archivo.variable} h-full antialiased`}
+      className={`${schibsted.variable} ${instrument.variable} ${jetbrains.variable} ${archivo.variable} ${bricolage.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-ground font-sans text-ink">{children}</body>
     </html>

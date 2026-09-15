@@ -16,7 +16,7 @@ export function OpsShowcase() {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute bottom-[8%] left-[6%] h-[36%] w-[52%] rounded-[40%] bg-[radial-gradient(ellipse_at_center,rgba(201,182,247,0.14),transparent_70%)] blur-3xl max-md:hidden"
+        className="pointer-events-none absolute bottom-[8%] left-[6%] h-[36%] w-[52%] rounded-[40%] bg-[radial-gradient(ellipse_at_center,rgba(125,153,170,0.18),transparent_70%)] blur-3xl max-md:hidden"
         aria-hidden
       />
 

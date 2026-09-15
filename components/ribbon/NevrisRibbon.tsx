@@ -5,23 +5,26 @@ import { useMemo } from "react";
 import * as THREE from "three";
 
 /**
- * Set true to freeze motion + opaque MeshBasicMaterial lavender (debug).
+ * Set true to freeze motion + opaque MeshBasicMaterial accent (debug).
  * Keep false for production.
  */
 export const DEBUG_BASELINE = false;
 
-const SMOKE = "#3a3348";
-const LAVENDER = "#c9b6f7";
-const EDGE = "#5a4d78";
+/** California beaches lacquer — peach body, sky reverse, cyan edge flash. */
+const DEEP = "#4d6574";
+const SLATE = "#7d99aa";
+const PEACH = "#ffc067";
+const SKY = "#66c4ff";
+const CYAN = "#66f4ff";
+const PEACH_SOFT = "#ffd699";
 
 type NevrisRibbonProps = {
   scale?: number;
 };
 
 /**
- * Smoked black glass with lavender tint — glossy, partially transmitting.
- * Uses scene.environment (procedural RoomEnvironment) for reflections;
- * avoids CDN HDR which previously lost the WebGL context.
+ * Coastal glass loop — peach-forward with cool sky/cyan transmission.
+ * Reads the California beaches palette clearly in motion and at rest.
  */
 export function NevrisRibbon({ scale = 1 }: NevrisRibbonProps) {
   const geometry = useMemo(() => createTwistedRibbonGeometry(), []);
@@ -29,7 +32,7 @@ export function NevrisRibbon({ scale = 1 }: NevrisRibbonProps) {
   const materials = useMemo(() => {
     if (DEBUG_BASELINE) {
       const solid = new THREE.MeshBasicMaterial({
-        color: new THREE.Color(LAVENDER),
+        color: new THREE.Color(PEACH),
         side: THREE.DoubleSide,
         transparent: false,
         opacity: 1,
@@ -39,61 +42,61 @@ export function NevrisRibbon({ scale = 1 }: NevrisRibbonProps) {
       return [solid, solid.clone(), solid.clone()];
     }
 
-    // Front — smoked charcoal glass with lavender body
+    // Front — warm peach glass with slate depth
     const frontMat = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color(SMOKE),
+      color: new THREE.Color(SLATE),
       metalness: 0,
-      roughness: 0.08,
-      transmission: 0.58,
-      thickness: 1.35,
-      ior: 1.45,
-      attenuationColor: new THREE.Color(LAVENDER),
-      attenuationDistance: 0.55,
+      roughness: 0.07,
+      transmission: 0.48,
+      thickness: 1.4,
+      ior: 1.46,
+      attenuationColor: new THREE.Color(PEACH),
+      attenuationDistance: 0.38,
+      transparent: true,
+      opacity: 1,
+      depthWrite: false,
+      clearcoat: 1,
+      clearcoatRoughness: 0.035,
+      envMapIntensity: 1.25,
+      specularIntensity: 1,
+      side: THREE.DoubleSide,
+    });
+
+    // Reverse — sky blue pass-through
+    const backMat = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color(SKY),
+      metalness: 0,
+      roughness: 0.05,
+      transmission: 0.74,
+      thickness: 0.9,
+      ior: 1.4,
+      attenuationColor: new THREE.Color(PEACH_SOFT),
+      attenuationDistance: 0.45,
+      transparent: true,
+      opacity: 1,
+      depthWrite: false,
+      clearcoat: 1,
+      clearcoatRoughness: 0.03,
+      envMapIntensity: 1.35,
+      side: THREE.DoubleSide,
+    });
+
+    // Edges — deep rim with bright cyan flash
+    const edgeMat = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color(DEEP),
+      metalness: 0,
+      roughness: 0.09,
+      transmission: 0.62,
+      thickness: 0.32,
+      ior: 1.38,
+      attenuationColor: new THREE.Color(CYAN),
+      attenuationDistance: 0.28,
       transparent: true,
       opacity: 1,
       depthWrite: false,
       clearcoat: 1,
       clearcoatRoughness: 0.04,
       envMapIntensity: 1.2,
-      specularIntensity: 1,
-      side: THREE.DoubleSide,
-    });
-
-    // Reverse — lighter lavender pass-through
-    const backMat = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color("#4a4060"),
-      metalness: 0,
-      roughness: 0.06,
-      transmission: 0.78,
-      thickness: 0.95,
-      ior: 1.4,
-      attenuationColor: new THREE.Color("#d4c4ff"),
-      attenuationDistance: 0.4,
-      transparent: true,
-      opacity: 1,
-      depthWrite: false,
-      clearcoat: 1,
-      clearcoatRoughness: 0.035,
-      envMapIntensity: 1.3,
-      side: THREE.DoubleSide,
-    });
-
-    // Edges — lilac rim where light thins
-    const edgeMat = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color(EDGE),
-      metalness: 0,
-      roughness: 0.1,
-      transmission: 0.7,
-      thickness: 0.35,
-      ior: 1.38,
-      attenuationColor: new THREE.Color("#c9b6f7"),
-      attenuationDistance: 0.3,
-      transparent: true,
-      opacity: 1,
-      depthWrite: false,
-      clearcoat: 1,
-      clearcoatRoughness: 0.05,
-      envMapIntensity: 1.15,
       side: THREE.DoubleSide,
     });
 

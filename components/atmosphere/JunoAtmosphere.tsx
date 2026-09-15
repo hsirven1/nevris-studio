@@ -10,8 +10,7 @@ import {
 } from "motion/react";
 
 /**
- * Juno — soft coral wash, warm sand plane, gentle contour.
- * Reference atmosphere for the shared project visual system.
+ * Juno — coral + cool wash as square, axis-aligned blocks.
  */
 export function JunoAtmosphere() {
   const reduce = useReducedMotion();
@@ -20,7 +19,6 @@ export function JunoAtmosphere() {
   const p = progress ?? fallback;
 
   const planeX = useTransform(p, [0, 1], ["-6%", "5%"]);
-  const planeRotate = useTransform(p, [0, 1], [-10, -4]);
   const warmX = useTransform(p, [0, 1], ["10%", "-3%"]);
 
   return (
@@ -34,15 +32,8 @@ export function JunoAtmosphere() {
         className="absolute -top-[18%] -left-[12%] h-[72%] w-[50%] max-md:h-[58%] max-md:w-[62%]"
       >
         <motion.div
-          className="h-full w-full rounded-[2rem] bg-juno-coral opacity-[0.18] max-md:opacity-[0.12]"
-          style={
-            reduce
-              ? undefined
-              : {
-                  x: planeX,
-                  rotate: planeRotate,
-                }
-          }
+          className="h-full w-full rounded-none bg-juno-coral opacity-[0.18] max-md:opacity-[0.12]"
+          style={reduce ? undefined : { x: planeX }}
         />
       </AmbientDrift>
 
@@ -53,7 +44,7 @@ export function JunoAtmosphere() {
         className="absolute top-[8%] right-[-12%] h-[56%] w-[44%] max-md:hidden"
       >
         <motion.div
-          className="h-full w-full rounded-[2rem] bg-[rgba(168,196,214,0.35)]"
+          className="h-full w-full rounded-none bg-[rgba(168,196,214,0.35)]"
           style={reduce ? undefined : { x: warmX }}
         />
       </AmbientDrift>
@@ -64,7 +55,7 @@ export function JunoAtmosphere() {
         delay={0.6}
         className="absolute bottom-[-8%] left-[28%] h-[40%] w-[36%] max-md:hidden"
       >
-        <div className="h-full w-full rounded-full bg-[rgba(196,214,168,0.28)] blur-xl" />
+        <div className="h-full w-full rounded-none bg-[rgba(196,214,168,0.28)]" />
       </AmbientDrift>
 
       <AmbientDrift amplitude={6} duration={34} className="absolute inset-0">

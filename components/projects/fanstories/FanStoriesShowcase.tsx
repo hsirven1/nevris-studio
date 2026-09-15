@@ -84,7 +84,7 @@ export function FanStoriesShowcase() {
       ) : (
         <div className="relative mx-auto h-[min(64vh,34rem)] w-full max-w-[42rem]">
           <div
-            className="pointer-events-none absolute top-[8%] left-[12%] h-[70%] w-[76%] rounded-[45%] bg-[radial-gradient(ellipse_at_center,rgba(201,182,247,0.28),transparent_72%)] blur-3xl"
+            className="pointer-events-none absolute top-[8%] left-[12%] h-[70%] w-[76%] rounded-[45%] bg-[radial-gradient(ellipse_at_center,rgba(102,244,255,0.14),transparent_72%)] blur-3xl"
             aria-hidden
           />
           <div

@@ -4,7 +4,7 @@ import { ChapterBanner } from "@/components/ChapterBanner";
 import { site } from "@/content/site";
 
 /**
- * Black chapter band — hard break into featured work.
+ * Editorial chapter title into featured work.
  */
 export function SelectedWorkHeader() {
   return (
@@ -15,7 +15,7 @@ export function SelectedWorkHeader() {
     >
       <ChapterBanner title={site.selectedWork.title} />
       <div
-        className="h-8 bg-ground md:h-[clamp(2rem,5vh,3.25rem)]"
+        className="h-3 bg-ground md:h-[clamp(1.25rem,3.5vh,2.25rem)]"
         aria-hidden
       />
     </section>

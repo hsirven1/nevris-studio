@@ -1,0 +1,93 @@
+"use client";
+
+import { useContact } from "@/components/ContactProvider";
+import { useReducedMotion } from "motion/react";
+import { useEffect, useState } from "react";
+
+type SectionId = "work" | "studio" | "contact";
+
+const items: { id: SectionId; label: string }[] = [
+  { id: "work", label: "Our work" },
+  { id: "studio", label: "How we work" },
+  { id: "contact", label: "Contact" },
+];
+
+/**
+ * Mobile-only floating bottom destinations — editorial capsule, not an app tab bar.
+ */
+export function MobileBottomNav() {
+  const reduce = useReducedMotion();
+  const { openContact } = useContact();
+  const [active, setActive] = useState<SectionId | null>("work");
+
+  useEffect(() => {
+    const sections = items
+      .map((item) => document.getElementById(item.id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (!sections.length) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        const top = visible[0]?.target.id as SectionId | undefined;
+        if (top) setActive(top);
+      },
+      {
+        rootMargin: "-18% 0px -42% 0px",
+        threshold: [0.08, 0.2, 0.35, 0.5],
+      },
+    );
+    sections.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  const go = (item: (typeof items)[number]) => {
+    const el = document.getElementById(item.id);
+    if (el) {
+      el.scrollIntoView({
+        behavior: reduce ? "auto" : "smooth",
+        block: "start",
+      });
+      return;
+    }
+    if (item.id === "contact") openContact();
+  };
+
+  return (
+    <div
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-[60] flex justify-center px-4 md:hidden"
+      style={{ paddingBottom: "max(14px, env(safe-area-inset-bottom))" }}
+    >
+      <nav
+        aria-label="Mobile sections"
+        className="pointer-events-auto mb-1 flex w-full max-w-[26rem] items-center justify-between gap-0.5 rounded-full border border-ink bg-[color-mix(in_srgb,var(--ground)_92%,white)] px-1.5 py-1.5 shadow-[0_12px_36px_rgba(17,17,16,0.16)] backdrop-blur-md"
+      >
+        {items.map((item) => {
+          const isActive = active === item.id;
+          const isContact = item.id === "contact";
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => go(item)}
+                className={`min-w-0 flex-1 rounded-full px-2 py-2.5 text-center font-mono text-[12.5px] tracking-[0.05em] uppercase transition-colors ${
+                isContact
+                  ? isActive
+                    ? "bg-accent-pale text-ink"
+                    : "bg-accent-cool-pale/80 text-ink"
+                  : isActive
+                    ? "bg-accent-cool-pale text-ink"
+                    : "text-ink/75"
+              }`}
+              aria-current={isActive ? "true" : undefined}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+      </nav>
+    </div>
+  );
+}

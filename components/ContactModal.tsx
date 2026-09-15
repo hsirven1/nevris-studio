@@ -60,7 +60,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
   }
 
   const fieldClass =
-    "mt-2 w-full rounded-[10px] border border-ink/15 bg-ground px-3.5 py-3 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/35 focus:border-ink/40 focus:shadow-[0_0_0_3px_rgba(201,182,247,0.35)]";
+    "mt-2 w-full rounded-[10px] border border-ink/15 bg-ground px-3.5 py-3 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/35 focus:border-sky/50 focus:shadow-[0_0_0_3px_rgba(102,196,255,0.28)]";
 
   const labelClass =
     "block font-mono text-[11px] tracking-[0.12em] text-ink-45 uppercase";
@@ -203,7 +203,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
               </button>
               <button
                 type="submit"
-                className="rounded-full bg-ink px-6 py-3 font-mono text-[12px] tracking-[0.12em] text-ground uppercase transition-colors hover:bg-ink/90"
+                className="rounded-full bg-ink px-6 py-3 font-mono text-[12px] tracking-[0.12em] text-ground uppercase transition-colors hover:bg-accent"
               >
                 Send project inquiry
               </button>

@@ -1,28 +1,35 @@
 import * as THREE from "three";
 
 export type RibbonGeometryOptions = {
-  length?: number;
+  /** Ellipse major radius (X) */
+  radiusMajor?: number;
+  /** Ellipse minor radius (Z) */
+  radiusMinor?: number;
   width?: number;
   thickness?: number;
   pathSegments?: number;
-  /** Total torsion in radians — Math.PI = one half-turn */
+  /**
+   * Total torsion around the closed path.
+   * 2π = seamless twisted loop (sculptural Möbius-inspired band).
+   */
   twist?: number;
 };
 
 /**
- * Broad candy-ribbon strip: continuous flowing form —
- * thin entry → gradual widen through torsion → broad right-hand body.
- * Material groups: 0 = front, 1 = back, 2 = edges.
+ * Compact sculptural loop — a continuous twisted band that closes on itself.
+ * Finite in space (not a cross-page ribbon). Material groups:
+ * 0 = front, 1 = back, 2 = edges.
  */
 export function createTwistedRibbonGeometry({
-  length = 9.6,
-  width = 1.7,
-  thickness = 0.135,
-  pathSegments = 112,
-  twist = Math.PI,
+  radiusMajor = 1.92,
+  radiusMinor = 1.38,
+  width = 0.78,
+  thickness = 0.145,
+  pathSegments = 140,
+  twist = Math.PI * 2,
 }: RibbonGeometryOptions = {}) {
   const halfT = thickness / 2;
-  const corner = Math.min(halfT * 0.9, width * 0.05);
+  const corner = Math.min(halfT * 0.85, width * 0.06);
 
   const positions: number[] = [];
   const normals: number[] = [];
@@ -40,9 +47,9 @@ export function createTwistedRibbonGeometry({
 
   for (let i = 0; i <= pathSegments; i++) {
     const t = i / pathSegments;
-    const origin = sampleCenterline(t, length);
-    const tangent = sampleTangent(t, length);
-    const angle = twistAngle(t) * (twist / Math.PI);
+    const origin = sampleCenterline(t, radiusMajor, radiusMinor);
+    const tangent = sampleTangent(t, radiusMajor, radiusMinor);
+    const angle = t * twist;
     const halfW = (width * widthScale(t)) / 2;
 
     const up = new THREE.Vector3(0, 1, 0);
@@ -66,7 +73,6 @@ export function createTwistedRibbonGeometry({
     rings.push({ origin, frame, halfW });
   }
 
-  // Build each ring with its own width; profile topology stays constant
   const baseHalfW = width / 2;
   const baseProfile = roundedRectProfile(baseHalfW, halfT, corner, 3);
   const profileCount = baseProfile.length;
@@ -135,56 +141,42 @@ export function createTwistedRibbonGeometry({
   geometry.addGroup(frontCount + backCount, edgeCount, 2);
   geometry.computeVertexNormals();
   geometry.computeBoundingSphere();
+  geometry.center();
   return geometry;
 }
 
-/** Thin flowing entry → gradual widen → broad right body */
+/** Soft width breathing — organic, not noisy. */
 function widthScale(t: number) {
-  if (t < 0.22) {
-    const u = t / 0.22;
-    const s = u * u * (3 - 2 * u);
-    return THREE.MathUtils.lerp(0.32, 0.5, s);
-  }
-  if (t < 0.52) {
-    const u = (t - 0.22) / 0.3;
-    const s = u * u * (3 - 2 * u);
-    return THREE.MathUtils.lerp(0.5, 0.88, s);
-  }
-  if (t < 0.8) {
-    const u = (t - 0.52) / 0.28;
-    const s = u * u * (3 - 2 * u);
-    return THREE.MathUtils.lerp(0.88, 1.24, s);
-  }
-  const u = (t - 0.8) / 0.2;
-  const s = u * u * (3 - 2 * u);
-  return THREE.MathUtils.lerp(1.24, 1.12, s);
+  return 0.88 + 0.14 * Math.sin(t * Math.PI * 2) + 0.06 * Math.sin(t * Math.PI * 4);
 }
 
-/** One smooth half-turn across the lengthening mid-body */
-function twistAngle(t: number) {
-  const a = 0.24;
-  const b = 0.74;
-  if (t <= a) return 0;
-  if (t >= b) return Math.PI;
-  const u = (t - a) / (b - a);
-  const s = u * u * (3 - 2 * u);
-  return s * Math.PI;
-}
-
-function sampleCenterline(t: number, length: number) {
-  // Mild +X bias so the broad body sits in the right third
-  const x = (t - 0.42) * length;
-  const y = Math.sin(t * Math.PI) * 0.1;
-  const z = Math.sin((t - 0.5) * Math.PI * 0.42) * 0.22;
+/**
+ * Closed elliptical path with a gentle vertical fold —
+ * reads as a twisted loop / folded band, not a donut or infinity mark.
+ */
+function sampleCenterline(
+  t: number,
+  radiusMajor: number,
+  radiusMinor: number,
+) {
+  const theta = t * Math.PI * 2;
+  const x = radiusMajor * Math.cos(theta);
+  const y =
+    0.28 * Math.sin(theta * 2) + 0.1 * Math.sin(theta + 0.6);
+  const z = radiusMinor * Math.sin(theta);
   return new THREE.Vector3(x, y, z);
 }
 
-function sampleTangent(t: number, length: number) {
-  const eps = 0.002;
-  const t0 = Math.max(0, t - eps);
-  const t1 = Math.min(1, t + eps);
-  return sampleCenterline(t1, length)
-    .sub(sampleCenterline(t0, length))
+function sampleTangent(
+  t: number,
+  radiusMajor: number,
+  radiusMinor: number,
+) {
+  const eps = 0.0015;
+  const t0 = t - eps < 0 ? t - eps + 1 : t - eps;
+  const t1 = t + eps > 1 ? t + eps - 1 : t + eps;
+  return sampleCenterline(t1, radiusMajor, radiusMinor)
+    .sub(sampleCenterline(t0, radiusMajor, radiusMinor))
     .normalize();
 }
 
@@ -227,8 +219,8 @@ function roundedRectProfile(
   };
 
   for (let i = 0; i <= flat; i++) {
-    const t = i / flat;
-    const x = THREE.MathUtils.lerp(halfW - r, -halfW + r, t);
+    const u = i / flat;
+    const x = THREE.MathUtils.lerp(halfW - r, -halfW + r, u);
     push(x, halfT, 0, 1, "front");
   }
   for (let i = 1; i <= cornerSegs; i++) {
@@ -242,8 +234,8 @@ function roundedRectProfile(
     );
   }
   for (let i = 1; i <= flat; i++) {
-    const t = i / flat;
-    const y = THREE.MathUtils.lerp(halfT - r, -halfT + r, t);
+    const u = i / flat;
+    const y = THREE.MathUtils.lerp(halfT - r, -halfT + r, u);
     push(-halfW, y, -1, 0, "edge");
   }
   for (let i = 1; i <= cornerSegs; i++) {
@@ -257,8 +249,8 @@ function roundedRectProfile(
     );
   }
   for (let i = 1; i <= flat; i++) {
-    const t = i / flat;
-    const x = THREE.MathUtils.lerp(-halfW + r, halfW - r, t);
+    const u = i / flat;
+    const x = THREE.MathUtils.lerp(-halfW + r, halfW - r, u);
     push(x, -halfT, 0, -1, "back");
   }
   for (let i = 1; i <= cornerSegs; i++) {
@@ -272,8 +264,8 @@ function roundedRectProfile(
     );
   }
   for (let i = 1; i <= flat; i++) {
-    const t = i / flat;
-    const y = THREE.MathUtils.lerp(-halfT + r, halfT - r, t);
+    const u = i / flat;
+    const y = THREE.MathUtils.lerp(-halfT + r, halfT - r, u);
     push(halfW, y, 1, 0, "edge");
   }
   for (let i = 1; i < cornerSegs; i++) {

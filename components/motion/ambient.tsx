@@ -23,6 +23,20 @@ type AmbientDriftProps = {
   style?: CSSProperties;
 };
 
+function subscribeNarrow(onChange: () => void) {
+  const narrow = window.matchMedia("(max-width: 767px)");
+  narrow.addEventListener("change", onChange);
+  return () => narrow.removeEventListener("change", onChange);
+}
+
+function getNarrowSnapshot() {
+  return window.matchMedia("(max-width: 767px)").matches;
+}
+
+function useIsNarrow() {
+  return useSyncExternalStore(subscribeNarrow, getNarrowSnapshot, () => false);
+}
+
 function subscribeDesktopMotion(onChange: () => void) {
   const coarse = window.matchMedia("(pointer: coarse)");
   const narrow = window.matchMedia("(max-width: 767px)");
@@ -49,7 +63,7 @@ function useDesktopMotion() {
   );
 }
 
-/** Slow continuous atmospheric drift. Static under reduced motion / mobile. */
+/** Slow continuous atmospheric drift. Reduced amplitude on mobile; off under reduced-motion. */
 export function AmbientDrift({
   children,
   className,
@@ -60,7 +74,9 @@ export function AmbientDrift({
 }: AmbientDriftProps) {
   const reduce = useReducedMotion();
   const desktop = useDesktopMotion();
-  const allow = Boolean(desktop && !reduce);
+  const narrow = useIsNarrow();
+  const allow = Boolean(!reduce && (desktop || narrow));
+  const amp = narrow ? amplitude * 0.42 : amplitude;
 
   if (!allow) {
     return (
@@ -75,11 +91,11 @@ export function AmbientDrift({
       className={className}
       style={style}
       animate={{
-        x: [0, amplitude * 0.55, -amplitude * 0.35, 0],
-        y: [0, -amplitude * 0.4, amplitude * 0.25, 0],
+        x: [0, amp * 0.55, -amp * 0.35, 0],
+        y: [0, -amp * 0.4, amp * 0.25, 0],
       }}
       transition={{
-        duration,
+        duration: narrow ? duration * 1.15 : duration,
         delay,
         repeat: Infinity,
         ease: "easeInOut",
@@ -118,6 +134,6 @@ export function usePointerParallax(strength = 18) {
 
 export function useAllowPathMorph() {
   const reduce = useReducedMotion();
-  const desktop = useDesktopMotion();
-  return Boolean(desktop && !reduce);
+  // Gentle contour morph on mobile too — no pointer dependency.
+  return Boolean(!reduce);
 }

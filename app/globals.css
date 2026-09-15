@@ -1,14 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  --ground: #ecebe7;
-  --ink: #111110;
-  --ink-60: #46453f;
-  --ink-45: #6a6963;
-  --rule: rgba(17, 17, 16, 0.2);
-  --rule-strong: rgba(17, 17, 16, 0.25);
-  --panel: #e4e2dc;
-  --lavender: #c9b6f7;
+  --ground: #f6f1e6;
+  --ink: #111111;
+  --ink-60: #4a4a4a;
+  --ink-45: #6e6e6e;
+  --rule: rgba(17, 17, 17, 0.18);
+  --rule-strong: rgba(17, 17, 17, 0.26);
+  --panel: #ebe4d8;
+  /*
+   * Brand — California beaches
+   * Hierarchy:
+   *   peach  #FFC067 — primary warmth (logo N, marker, CTA hover)
+   *   cyan   #66F4FF — bright counterpoint (Discover, edge highlights)
+   *   sky    #66C4FF — structural cool fields
+   *   slate  #7D99AA — depth / muted support
+   */
+  --peach: #ffc067;
+  --cyan: #66f4ff;
+  --sky: #66c4ff;
+  --slate: #7d99aa;
+  --accent-primary: var(--peach);
+  --accent-secondary: var(--cyan);
+  --accent-tertiary: var(--sky);
+  --accent: var(--peach);
+  --accent-dark: var(--slate);
+  --accent-soft: var(--sky);
+  --accent-pale: #ffe2b3;
+  --accent-bright: var(--cyan);
+  --accent-muted: var(--slate);
+  --accent-cool-pale: #d4eeff;
+  --lavender: var(--accent);
   --live: #93e03c;
 
   --wilder-bg: #0d0e0f;
@@ -52,6 +74,20 @@
   --color-rule: var(--rule);
   --color-panel: var(--panel);
   --color-lavender: var(--lavender);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-pale: var(--accent-pale);
+  --color-accent-bright: var(--accent-bright);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-tertiary: var(--accent-tertiary);
+  --color-peach: var(--peach);
+  --color-cyan: var(--cyan);
+  --color-sky: var(--sky);
+  --color-slate: var(--slate);
+  --color-accent-cool-pale: var(--accent-cool-pale);
   --color-live: var(--live);
   --color-wilder-bg: var(--wilder-bg);
   --color-wilder-panel: var(--wilder-panel);
@@ -79,6 +115,8 @@
   --font-serif: var(--font-instrument);
   --font-mono: var(--font-jetbrains);
   --font-display-condensed: var(--font-archivo);
+  --font-logo: var(--font-bricolage);
+  --font-display: var(--font-bricolage);
 }
 
 @layer base {
@@ -121,8 +159,22 @@
     font-variation-settings: "wdth" 68;
   }
 
+  .font-logo {
+    font-family: var(--font-bricolage), var(--font-schibsted), sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+  }
+
+  /* Large editorial display — Bricolage; do not use for logo / nav / mono */
+  .font-display {
+    font-family: var(--font-display), var(--font-schibsted), sans-serif;
+    font-style: normal;
+  }
+
   .marker {
-    background-image: linear-gradient(var(--lavender), var(--lavender));
+    background-image: linear-gradient(var(--accent), var(--accent));
     background-repeat: no-repeat;
     background-size: 100% 0.82em;
     background-position: 0 0.18em;
@@ -147,15 +199,28 @@
   }
 
   .type-hero {
-    font-size: 3rem;
-    line-height: 0.92;
-    letter-spacing: -0.045em;
+    font-family: var(--font-display), var(--font-schibsted), sans-serif;
+    font-size: 2.85rem;
+    font-weight: 800;
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+  }
+
+  .type-hero-statement {
+    font-family: var(--font-display), var(--font-schibsted), sans-serif;
+    /* Fluid single-line size — stays one line across viewports */
+    font-size: clamp(1.35rem, 6.4vw, 2.65rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
   }
 
   .type-contact {
+    font-family: var(--font-display), var(--font-schibsted), sans-serif;
     font-size: 2.35rem;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    font-weight: 700;
+    line-height: 0.98;
+    letter-spacing: -0.03em;
   }
 
   .type-lab {
@@ -209,11 +274,13 @@
     letter-spacing: -0.02em;
   }
 
-  /* Work section intro — black band chapter title */
+  /* Work section intro — editorial chapter title on ink plate */
   .type-work-intro {
-    font-size: 2.5rem;
-    line-height: 0.98;
-    letter-spacing: -0.04em;
+    font-family: var(--font-display), var(--font-schibsted), sans-serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    line-height: 0.96;
+    letter-spacing: -0.03em;
   }
 
   .type-work-chapter {
@@ -343,8 +410,14 @@
       font-size: 4.25rem;
       line-height: 0.94;
     }
+    .type-hero-statement {
+      font-size: clamp(2.75rem, 5.4vw, 3.65rem);
+      line-height: 1;
+      letter-spacing: -0.034em;
+    }
     .type-contact {
       font-size: 3.25rem;
+      line-height: 0.98;
     }
     .type-lab {
       font-size: 4.5rem;
@@ -374,7 +447,7 @@
       font-size: 1.5rem;
     }
     .type-work-intro {
-      font-size: 3.5rem;
+      font-size: 2.45rem;
     }
     .type-work-chapter {
       font-size: 1.125rem;
@@ -386,8 +459,14 @@
       font-size: 5.15rem;
       line-height: 0.94;
     }
+    .type-hero-statement {
+      font-size: clamp(3.35rem, 4.6vw, 4.35rem);
+      line-height: 1;
+      letter-spacing: -0.036em;
+    }
     .type-contact {
       font-size: 3.75rem;
+      line-height: 0.98;
     }
     .type-lab {
       font-size: 6rem;
@@ -417,7 +496,7 @@
       font-size: 1.625rem;
     }
     .type-work-intro {
-      font-size: 4rem;
+      font-size: 2.85rem;
     }
     .type-work-chapter {
       font-size: 1.25rem;
@@ -428,6 +507,11 @@
     .type-hero {
       font-size: 82px;
       line-height: 0.94;
+    }
+    .type-hero-statement {
+      font-size: clamp(3.85rem, 4.2vw, 4.75rem);
+      line-height: 1;
+      letter-spacing: -0.038em;
     }
   }
 
@@ -724,7 +808,7 @@
 }
 
 .nav-link:hover {
-  background-image: linear-gradient(var(--lavender), var(--lavender));
+  background-image: linear-gradient(var(--accent), var(--accent));
   background-repeat: no-repeat;
   background-size: 100% 0.82em;
   background-position: 0 0.18em;
@@ -733,18 +817,20 @@
 
 .nav-contact {
   color: var(--ground);
+  transition: background-color 160ms var(--ease-entrance);
 }
 
 .nav-contact:hover {
   color: var(--ground) !important;
+  background-color: var(--accent);
 }
 
 .lab-row:hover:not(.lab-row-highlight) {
-  background: var(--lavender);
+  background: var(--accent-cool-pale);
 }
 
 .lab-row-highlight:hover {
-  background: var(--lavender);
+  background: var(--accent-pale);
 }
 
 .header-nav {

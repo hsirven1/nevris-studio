@@ -3,12 +3,8 @@ export const site = {
   email: "hello@nevris.studio",
   tagline: "Independent product studio",
   hero: {
-    titleLines: [
-      "Building",
-      "intelligent products",
-      "that feel simple.",
-    ],
-    highlight: "intelligent",
+    titleLines: ["From strategy to product."],
+    highlight: "",
   },
 
   workPanel: {
@@ -46,6 +42,7 @@ export const site = {
   },
   footer: {
     brand: "Nevris Studio",
+    foundedBy: "Founded by Harold Sirven",
     descriptor: "Independent product studio for AI, software, and new interfaces.",
     location: "Montréal, Canada",
     copyright: "© 2026 Nevris Studio",
@@ -53,6 +50,7 @@ export const site = {
       { label: "Our work", href: "#work" },
       { label: "How we work", href: "#studio" },
       { label: "Contact", href: "#contact" },
+      { label: "About Harold", href: "/harold" },
     ],
     social: [
       { label: "Email", href: "mailto:hello@nevris.studio" },

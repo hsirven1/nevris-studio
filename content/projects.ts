@@ -13,9 +13,9 @@ export const projects: Project[] = [
     name: "FanStories",
     kind: "CUSTOMER EXPERIENCE / PERSONALIZATION",
     positioning:
-      "Turning customer data into stories people actually want to share.",
+      "Turning customer data into personalized stories worth sharing.",
     summary:
-      "FanStories transforms activity and behavioral data into personalized recaps, milestones, and visual stories designed to feel engaging rather than analytical.",
+      "FanStories turns activity data into shareable stories, milestones, and visual recaps that feel engaging rather than analytical.",
     featured: true,
     world: "fanstories",
     website: "https://fanstories.co",
@@ -37,9 +37,9 @@ export const projects: Project[] = [
     slug: "lere",
     name: "Grand Angle Photo Festival",
     kind: "MOBILE / COMPUTER VISION / CULTURE",
-    positioning: "An immersive festival companion, in your pocket.",
+    positioning: "Festival app connecting visitors to the work around them.",
     summary:
-      "A native festival companion with programme, map, and artwork recognition — point the camera at a photograph and discover the work behind it.",
+      "The app combines programme, map, exhibition details, and camera-based artwork recognition in one simple mobile experience.",
     featured: true,
     world: "lere",
     website: "https://grandanglelere.com/",
@@ -61,9 +61,9 @@ export const projects: Project[] = [
     slug: "juno",
     name: "Juno",
     kind: "AI COMPANION / CONSUMER PRODUCT / RETIREMENT",
-    positioning: "Building an AI companion for life after work.",
+    positioning: "AI companion for navigating life after work.",
     summary:
-      "Juno helps people navigate retirement with personalized guidance, reflective journeys, contextual AI support, and relevant local opportunities.\n\nThe experience is designed to feel calm, warm, and easy to use, turning broad intentions into practical next steps.",
+      "Juno combines personalized guidance, mentor support, local opportunities, and practical next steps to make retirement easier to navigate.",
     featured: true,
     world: "juno",
     website: "https://retirement-companion.vercel.app/home",
@@ -80,9 +80,9 @@ export const projects: Project[] = [
     slug: "ai-executive-assistant",
     name: "Rook AI",
     kind: "AI OPERATIONS / EXECUTIVE ASSISTANT",
-    positioning: "An AI executive assistant for complex operations.",
+    positioning: "AI assistant for complex operational decisions.",
     summary:
-      "Rook brings together signals from email, spreadsheets and operational systems, surfaces what needs attention, and recommends clear next steps with the human still in control.",
+      "Rook pulls signals from email, spreadsheets, and operational systems into one place, then surfaces priorities and recommends next steps for human review.",
     featured: true,
     world: "ops",
     website: "https://toy-program-dashboard.vercel.app/",

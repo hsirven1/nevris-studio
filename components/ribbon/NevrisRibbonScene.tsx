@@ -23,6 +23,16 @@ function getDesktopSnapshot() {
   return !window.matchMedia("(max-width: 767px), (pointer: coarse)").matches;
 }
 
+function subscribeNarrow(onStoreChange: () => void) {
+  const mq = window.matchMedia("(max-width: 767px)");
+  mq.addEventListener("change", onStoreChange);
+  return () => mq.removeEventListener("change", onStoreChange);
+}
+
+function getNarrowSnapshot() {
+  return window.matchMedia("(max-width: 767px)").matches;
+}
+
 /**
  * Window-level pointer (normalized -1..1).
  * Avoid R3F `useThree().pointer` — hero host is `pointer-events-none`.
@@ -72,14 +82,36 @@ function SoftRoomEnv() {
   return null;
 }
 
+/** Compact loop — centered above the headline, close enough to overlap. */
+const DESKTOP_REST = {
+  x: 0.06,
+  y: 0.1,
+  z: -0.06,
+  rx: -0.38,
+  ry: 0.42,
+  rz: 0.14,
+} as const;
+
+/** Mobile — slightly above the headline with light overlap. */
+const MOBILE_REST = {
+  x: 0.04,
+  y: 0.08,
+  z: -0.04,
+  rx: -0.34,
+  ry: 0.34,
+  rz: 0.1,
+} as const;
+
 function RibbonRig({
   scrollProgressRef,
   animate,
   pointerReactive,
+  mobileFraming,
 }: {
   scrollProgressRef?: React.MutableRefObject<number>;
   animate: boolean;
   pointerReactive: boolean;
+  mobileFraming: boolean;
 }) {
   const group = useRef<THREE.Group>(null);
   const pointer = useWindowPointer(pointerReactive);
@@ -87,11 +119,9 @@ function RibbonRig({
   const target = useMemo(() => new THREE.Vector2(0, 0), []);
   const current = useMemo(() => new THREE.Vector2(0, 0), []);
 
-  const rest = useMemo(
-    // Right-anchored; further left so more sculptural body stays in frame
-    () => ({ x: 1.05, y: -0.04, z: 0, rx: -0.16, ry: 0.2, rz: 0.22 }),
-    [],
-  );
+  const rest = mobileFraming ? MOBILE_REST : DESKTOP_REST;
+  const amp = mobileFraming ? 0.65 : 0.95;
+  const baseScale = mobileFraming ? 0.88 : 1.08;
 
   useFrame((_, delta) => {
     if (!group.current) return;
@@ -106,34 +136,52 @@ function RibbonRig({
 
     const scroll = THREE.MathUtils.clamp(scrollProgressRef?.current ?? 0, 0, 1);
     const scrollTilt = (scroll - 0.35) * 0.1;
-    const scrollLift = (scroll - 0.35) * -0.15;
+    const scrollLift = (scroll - 0.35) * -0.1;
 
     if (animate) time.current += delta;
 
     if (pointerReactive) {
-      target.set(pointer.current.x * 0.24, pointer.current.y * 0.16);
+      const px = pointer.current.x;
+      const py = pointer.current.y;
+      // Stronger pull as the cursor nears the centerpiece.
+      const nearObject =
+        1 - Math.min(1, Math.hypot(px - 0.04, py - 0.08) / 1.2);
+      const proximity = THREE.MathUtils.lerp(
+        0.78,
+        1.55,
+        nearObject * nearObject,
+      );
+      target.set(px * 0.85 * proximity, py * 0.62 * proximity);
     } else {
       target.set(0, 0);
     }
-    // Snappier follow — still damped, not jittery
-    current.lerp(target, 1 - Math.exp(-Math.min(delta, 0.1) * 4.2));
+    // Snappy follow — controlled, not jelly
+    current.lerp(target, 1 - Math.exp(-Math.min(delta, 0.08) * 12.5));
 
-    const idleY = animate ? Math.sin(time.current * 0.22) * 0.12 : 0;
-    const idleX = animate ? Math.sin(time.current * 0.18 + 0.6) * 0.04 : 0;
-    const idleZ = animate ? Math.sin(time.current * 0.15) * 0.025 : 0;
-    const idleLift = animate ? Math.sin(time.current * 0.2) * 0.04 : 0;
+    // Continuous idle — readable even when the pointer is still
+    const idleY = animate ? Math.sin(time.current * 0.42) * 0.14 * amp : 0;
+    const idleX = animate
+      ? Math.cos(time.current * 0.34) * 0.08 * amp
+      : 0;
+    const idleZ = animate ? Math.sin(time.current * 0.28) * 0.07 * amp : 0;
+    const idleLift = animate
+      ? Math.sin(time.current * 0.48) * 0.07 * amp
+      : 0;
+    const idleDriftX = animate
+      ? Math.sin(time.current * 0.26 + 0.5) * 0.05 * amp
+      : 0;
 
-    const rx = rest.rx + idleX + current.y * 0.52 + scrollTilt * 0.3;
-    const ry = rest.ry + idleY + current.x * 1.45 + scrollTilt * 0.2;
-    const rz = rest.rz + idleZ + current.x * 0.18;
-    const x = rest.x + scroll * 0.05 + current.x * 0.22;
-    const y = rest.y + scrollLift + idleLift + current.y * 0.14;
-    const z = rest.z + current.x * -0.12;
+    const rx = rest.rx + idleX + current.y * 1.35 + scrollTilt * 0.2;
+    const ry = rest.ry + idleY + current.x * 2.85 + scrollTilt * 0.12;
+    const rz = rest.rz + idleZ + current.x * 0.55;
+    const x = rest.x + scroll * 0.03 + current.x * 0.28 + idleDriftX;
+    const y = rest.y + scrollLift + idleLift + current.y * 0.32;
+    const z = rest.z + current.x * -0.18;
 
     if (![rx, ry, rz, x, y, z].every(Number.isFinite)) {
       group.current.position.set(rest.x, rest.y, rest.z);
       group.current.rotation.set(rest.rx, rest.ry, rest.rz);
-      group.current.scale.setScalar(1);
+      group.current.scale.setScalar(baseScale);
       group.current.visible = true;
       return;
     }
@@ -144,7 +192,7 @@ function RibbonRig({
     group.current.position.x = x;
     group.current.position.y = y;
     group.current.position.z = z;
-    group.current.scale.setScalar(1);
+    group.current.scale.setScalar(baseScale);
     group.current.visible = true;
   });
 
@@ -153,10 +201,10 @@ function RibbonRig({
       ref={group}
       position={DEBUG_BASELINE ? [0, 0, 0] : [rest.x, rest.y, rest.z]}
       rotation={DEBUG_BASELINE ? [0, 0, 0] : [rest.rx, rest.ry, rest.rz]}
-      scale={1}
+      scale={baseScale}
       visible
     >
-      <NevrisRibbon scale={DEBUG_BASELINE ? 1 : 1.2} />
+      <NevrisRibbon scale={DEBUG_BASELINE ? 1 : 0.92} />
     </group>
   );
 }
@@ -171,10 +219,17 @@ export function NevrisRibbonScene({
     getDesktopSnapshot,
     () => false,
   );
+  const isNarrow = useSyncExternalStore(
+    subscribeNarrow,
+    getNarrowSnapshot,
+    () => false,
+  );
   const [contextKey, setContextKey] = useState(0);
 
-  const animate = Boolean(!DEBUG_BASELINE && !reduce && isDesktop);
+  // Desktop: idle + pointer. Mobile: quieter autonomous drift only.
+  const animate = Boolean(!DEBUG_BASELINE && !reduce && (isDesktop || isNarrow));
   const pointerReactive = Boolean(!DEBUG_BASELINE && !reduce && isDesktop);
+  const mobileFraming = Boolean(!DEBUG_BASELINE && isNarrow);
   const dpr: [number, number] = [1, 1.5];
 
   useEffect(() => {
@@ -206,9 +261,13 @@ export function NevrisRibbonScene({
           depth: true,
         }}
         camera={{
-          // Mild left bias — keeps right-side mass while showing more body
-          position: DEBUG_BASELINE ? [0, 0, 8] : [-0.18, 0.05, 7.45],
-          fov: 36,
+          // Centered on the compact loop mass
+          position: DEBUG_BASELINE
+            ? [0, 0, 8]
+            : mobileFraming
+              ? [0, 0.06, 6.4]
+              : [0, 0.08, 6.1],
+          fov: mobileFraming ? 38 : 36,
           near: 0.1,
           far: 100,
         }}
@@ -229,27 +288,34 @@ export function NevrisRibbonScene({
       >
         <PerspectiveCamera
           makeDefault
-          position={DEBUG_BASELINE ? [0, 0, 8] : [-0.18, 0.05, 7.45]}
-          fov={36}
+          position={
+            DEBUG_BASELINE
+              ? [0, 0, 8]
+              : mobileFraming
+                ? [0, 0.06, 6.4]
+                : [0, 0.08, 6.1]
+          }
+          fov={mobileFraming ? 38 : 36}
           near={0.1}
           far={100}
         />
         {!DEBUG_BASELINE && <SoftRoomEnv />}
         <ambientLight intensity={0.9} />
-        <directionalLight position={[5, 6, 3]} intensity={1.5} color="#fff8f0" />
-        <directionalLight position={[-2, 3, -2]} intensity={0.75} color="#c9b6f7" />
-        <directionalLight position={[2, -1, 5]} intensity={0.55} color="#e4d8ff" />
+        <directionalLight position={[5, 6, 3]} intensity={1.55} color="#fffaf2" />
+        <directionalLight position={[-2, 3, -2]} intensity={0.95} color="#ffc067" />
+        <directionalLight position={[2, -1, 5]} intensity={0.55} color="#66f4ff" />
         <spotLight
           position={[4, 5, 4]}
-          intensity={1.55}
+          intensity={1.4}
           angle={0.4}
           penumbra={0.75}
-          color="#ffffff"
+          color="#66c4ff"
         />
         <RibbonRig
           scrollProgressRef={scrollProgressRef}
           animate={animate}
           pointerReactive={pointerReactive}
+          mobileFraming={mobileFraming}
         />
       </Canvas>
     </div>

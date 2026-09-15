@@ -6,7 +6,7 @@ import type { Project } from "@/content/types";
  */
 export function ProjectIndexEntry({ project }: { project: Project }) {
   return (
-    <article className="gutter-x border-b border-rule py-[18px] transition-colors hover:bg-lavender">
+    <article className="gutter-x border-b border-rule py-[18px] transition-colors hover:bg-accent-cool-pale">
       <div className="grid grid-cols-1 items-center gap-2 lg:grid-cols-[1fr_220px_180px] lg:gap-0">
         <div className="type-lab-row font-semibold">{project.name}</div>
         <div className="hidden text-[15px] text-ink-60 lg:block">
