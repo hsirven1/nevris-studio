@@ -2,6 +2,7 @@
 
 import type { Project } from "@/content/types";
 import { FanStoriesShowcase } from "@/components/projects/fanstories/FanStoriesShowcase";
+import { ProjectLink } from "@/components/projects/ProjectLink";
 import { ProjectSectionPlane } from "@/components/projects/ProjectSectionPlane";
 
 function ProjectLinks({ project }: { project: Project }) {
@@ -10,20 +11,21 @@ function ProjectLinks({ project }: { project: Project }) {
     <div className="mt-8 flex flex-col gap-3">
       {project.actions.slice(0, 2).map((action) =>
         action.interactive ? (
-          <a
+          <ProjectLink
             key={action.label}
             href={action.href}
-            className="project-link text-[15px]"
-            {...(action.href.startsWith("http")
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
+            className="text-[15px]"
           >
             {action.label}
-          </a>
+          </ProjectLink>
         ) : (
-          <span key={action.label} className="project-link-muted">
+          <ProjectLink
+            key={action.label}
+            href={action.href}
+            muted
+          >
             {action.label}
-          </span>
+          </ProjectLink>
         ),
       )}
     </div>

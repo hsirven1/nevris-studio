@@ -2,6 +2,7 @@
 
 import type { Project } from "@/content/types";
 import { GrandAngleShowcase } from "@/components/projects/grand-angle/GrandAngleShowcase";
+import { ProjectLink } from "@/components/projects/ProjectLink";
 import { ProjectSectionPlane } from "@/components/projects/ProjectSectionPlane";
 
 function ProjectLinks({ project }: { project: Project }) {
@@ -10,20 +11,22 @@ function ProjectLinks({ project }: { project: Project }) {
     <div className="mt-8 flex flex-col gap-3">
       {project.actions.map((action) =>
         action.interactive ? (
-          <a
+          <ProjectLink
             key={action.label}
             href={action.href}
-            className="project-link text-[15px] text-studio-text"
-            {...(action.href.startsWith("http")
-              ? { target: "_blank", rel: "noopener noreferrer" }
-              : {})}
+            className="text-[15px] text-studio-text"
           >
             {action.label}
-          </a>
+          </ProjectLink>
         ) : (
-          <span key={action.label} className="project-link-muted text-studio-meta">
+          <ProjectLink
+            key={action.label}
+            href={action.href}
+            muted
+            className="text-studio-meta"
+          >
             {action.label}
-          </span>
+          </ProjectLink>
         ),
       )}
     </div>

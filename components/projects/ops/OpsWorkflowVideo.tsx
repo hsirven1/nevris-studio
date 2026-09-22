@@ -10,6 +10,8 @@ const POSTER_SRC =
 
 /**
  * Actions workflow demo — first media in the Rook showcase column.
+ * Mobile: muted autoplay, no controls, no play overlay (poster if blocked).
+ * Desktop: same autoplay + discreet hover play/pause.
  */
 export function OpsWorkflowVideo() {
   const hostRef = useRef<HTMLDivElement>(null);
@@ -18,6 +20,7 @@ export function OpsWorkflowVideo() {
   const [inView, setInView] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [autoplayBlocked, setAutoplayBlocked] = useState(false);
 
   useEffect(() => {
     const el = hostRef.current;
@@ -44,8 +47,14 @@ export function OpsWorkflowVideo() {
     if (inView) {
       void video
         .play()
-        .then(() => setPlaying(true))
-        .catch(() => setPlaying(false));
+        .then(() => {
+          setPlaying(true);
+          setAutoplayBlocked(false);
+        })
+        .catch(() => {
+          setPlaying(false);
+          setAutoplayBlocked(true);
+        });
     } else {
       video.pause();
       setPlaying(false);
@@ -56,12 +65,20 @@ export function OpsWorkflowVideo() {
     const video = videoRef.current;
     if (!video || failed) return;
     if (video.paused) {
-      void video.play().then(() => setPlaying(true)).catch(() => undefined);
+      void video
+        .play()
+        .then(() => {
+          setPlaying(true);
+          setAutoplayBlocked(false);
+        })
+        .catch(() => undefined);
     } else {
       video.pause();
       setPlaying(false);
     }
   };
+
+  const showStaticPoster = failed || (autoplayBlocked && !playing);
 
   return (
     <div
@@ -78,32 +95,50 @@ export function OpsWorkflowVideo() {
           height={712}
         />
       ) : (
-        <video
-          ref={videoRef}
-          className="block h-auto w-full bg-[#1a1a18]"
-          poster={POSTER_SRC}
-          muted
-          playsInline
-          loop
-          preload="metadata"
-          controls={false}
-          aria-label="Rook AI Actions workflow — issue detected to action taken"
-          onPlay={() => setPlaying(true)}
-          onPause={() => setPlaying(false)}
-          onError={() => setFailed(true)}
-        >
-          <source src={VIDEO_SRC} type="video/mp4" />
-        </video>
+        <>
+          <video
+            ref={videoRef}
+            className={`block h-auto w-full bg-[#1a1a18] ${
+              showStaticPoster ? "invisible absolute inset-0" : ""
+            } pointer-events-none md:pointer-events-auto`}
+            poster={POSTER_SRC}
+            muted
+            playsInline
+            autoPlay
+            loop
+            preload="metadata"
+            controls={false}
+            disablePictureInPicture
+            aria-label="Rook AI Actions workflow — issue detected to action taken"
+            onPlay={() => setPlaying(true)}
+            onPause={() => setPlaying(false)}
+            onError={() => setFailed(true)}
+          >
+            <source src={VIDEO_SRC} type="video/mp4" />
+          </video>
+
+          {showStaticPoster ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={POSTER_SRC}
+              alt="Rook AI Actions workflow"
+              className="block h-auto w-full"
+              width={2350}
+              height={712}
+            />
+          ) : null}
+        </>
       )}
 
-      {!failed && (
+      {/* Desktop-only discreet control — never shown on mobile */}
+      {!failed ? (
         <button
           type="button"
           onClick={togglePlayback}
-          className={`absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-ink/70 text-white transition-opacity duration-200 hover:bg-ink/85 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink ${
+          className={`absolute right-3 bottom-3 hidden size-9 items-center justify-center rounded-full bg-ink/70 text-white transition-opacity duration-200 hover:bg-ink/85 focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink md:flex ${
             playing
-              ? "opacity-100 md:opacity-0 md:group-hover:opacity-100"
-              : "opacity-100"
+              ? "md:opacity-0 md:group-hover:opacity-100"
+              : "md:opacity-100"
           }`}
           aria-label={playing ? "Pause workflow video" : "Play workflow video"}
         >
@@ -119,7 +154,7 @@ export function OpsWorkflowVideo() {
             />
           )}
         </button>
-      )}
+      ) : null}
     </div>
   );
 }

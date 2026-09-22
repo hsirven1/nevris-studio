@@ -30,13 +30,24 @@ function ScanHero() {
   const stageRef = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const [hasExhibition, setHasExhibition] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const sync = () => setIsMobile(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: stageRef,
     offset: ["start end", "end start"],
   });
+  // Desktop-only parallax — mobile translate exposed the #111110 letterbox.
   const photoY = useTransform(scrollYProgress, [0, 1], [36, -36]);
   const phoneY = useTransform(scrollYProgress, [0, 1], [28, -20]);
+  const parallaxOn = !reduce && !isMobile;
 
   useEffect(() => {
     let cancelled = false;
@@ -56,11 +67,11 @@ function ScanHero() {
   return (
     <div ref={stageRef} className="w-full">
       <div className="relative overflow-visible rounded-[0.15rem] border border-white/10">
-        <div className="absolute inset-0 overflow-hidden bg-[#111110]">
+        <div className="absolute inset-0 overflow-hidden bg-[#111110] md:bg-[#111110]">
           {hasExhibition ? (
             <motion.div
               className="absolute inset-0"
-              style={reduce ? undefined : { y: photoY }}
+              style={parallaxOn ? { y: photoY } : undefined}
             >
               <ProductImage
                 src={MEDIA.exhibition}
@@ -80,7 +91,7 @@ function ScanHero() {
         <div className="relative z-10 flex justify-end px-[5%] pt-10 pb-10 sm:px-[9%] sm:pt-12 sm:pb-12 lg:px-[11%]">
           <motion.div
             className="w-[min(46%,14.5rem)] sm:w-[min(36%,15.25rem)] lg:w-[14.75rem]"
-            style={reduce ? undefined : { y: phoneY }}
+            style={parallaxOn ? { y: phoneY } : undefined}
           >
             <DeviceVideo
               src={MEDIA.scan}

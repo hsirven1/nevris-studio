@@ -2,6 +2,7 @@
 
 import type { Project } from "@/content/types";
 import { MobileRookCase } from "@/components/mobile/MobileRookCase";
+import { ProjectLink } from "@/components/projects/ProjectLink";
 import { ProjectSectionPlane } from "@/components/projects/ProjectSectionPlane";
 import { ProjectTransition } from "@/components/motion/ProjectTransition";
 import { OpsShowcase } from "@/components/projects/ops/OpsShowcase";
@@ -43,20 +44,17 @@ export function ProjectWorldOps({ project }: { project: Project }) {
                   <div className="project-links project-copy-links">
                     {project.actions.map((action) =>
                       action.interactive ? (
-                        <a
+                        <ProjectLink key={action.label} href={action.href}>
+                          {action.label}
+                        </ProjectLink>
+                      ) : (
+                        <ProjectLink
                           key={action.label}
                           href={action.href}
-                          className="project-link"
-                          {...(action.href.startsWith("http")
-                            ? { target: "_blank", rel: "noopener noreferrer" }
-                            : {})}
+                          muted
                         >
                           {action.label}
-                        </a>
-                      ) : (
-                        <span key={action.label} className="project-link-muted">
-                          {action.label}
-                        </span>
+                        </ProjectLink>
                       ),
                     )}
                   </div>

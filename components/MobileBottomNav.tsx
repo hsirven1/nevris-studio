@@ -13,7 +13,7 @@ const items: { id: SectionId; label: string }[] = [
 ];
 
 /**
- * Mobile-only floating bottom destinations — editorial capsule, not an app tab bar.
+ * Mobile-only floating bottom destinations — same family as desktop capsule.
  */
 export function MobileBottomNav() {
   const reduce = useReducedMotion();
@@ -62,7 +62,7 @@ export function MobileBottomNav() {
     >
       <nav
         aria-label="Mobile sections"
-        className="pointer-events-auto mb-1 flex w-full max-w-[26rem] items-center justify-between gap-0.5 rounded-full border border-ink bg-[color-mix(in_srgb,var(--ground)_92%,white)] px-1.5 py-1.5 shadow-[0_12px_36px_rgba(17,17,16,0.16)] backdrop-blur-md"
+        className="pointer-events-auto mb-1 flex w-full max-w-[26rem] items-center gap-0.5 rounded-full border border-ink bg-[color-mix(in_srgb,var(--ground)_92%,white)] py-1.5 pr-1.5 pl-1.5 shadow-[0_12px_36px_rgba(17,17,16,0.16)] backdrop-blur-md"
       >
         {items.map((item) => {
           const isActive = active === item.id;
@@ -72,14 +72,12 @@ export function MobileBottomNav() {
               key={item.id}
               type="button"
               onClick={() => go(item)}
-                className={`min-w-0 flex-1 rounded-full px-2 py-2.5 text-center font-label text-[12px] tracking-[0.08em] uppercase transition-colors ${
+              className={`min-w-0 flex-1 rounded-full px-2.5 py-2.5 text-center font-label text-[12px] font-medium tracking-[0.1em] uppercase transition-colors ${
                 isContact
-                  ? isActive
-                    ? "bg-accent-pale text-ink"
-                    : "bg-accent-cool-pale/80 text-ink"
+                  ? "bg-ink text-ground hover:bg-ink/90"
                   : isActive
-                    ? "bg-accent-cool-pale text-ink"
-                    : "text-ink/75"
+                    ? "bg-peach/35 text-ink"
+                    : "bg-transparent text-ink/75 hover:text-ink"
               }`}
               aria-current={isActive ? "true" : undefined}
             >

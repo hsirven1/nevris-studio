@@ -3,6 +3,7 @@
 import type { Project } from "@/content/types";
 import { MobileJunoCase } from "@/components/mobile/MobileJunoCase";
 import { JunoShowcase } from "@/components/projects/juno/JunoShowcase";
+import { ProjectLink } from "@/components/projects/ProjectLink";
 import { ProjectSectionPlane } from "@/components/projects/ProjectSectionPlane";
 import { ProjectTransition } from "@/components/motion/ProjectTransition";
 
@@ -46,20 +47,17 @@ export function ProjectWorldJuno({ project }: { project: Project }) {
                   <div className="project-links project-copy-links">
                     {project.actions.map((action) =>
                       action.interactive ? (
-                        <a
+                        <ProjectLink key={action.label} href={action.href}>
+                          {action.label}
+                        </ProjectLink>
+                      ) : (
+                        <ProjectLink
                           key={action.label}
                           href={action.href}
-                          className="project-link"
-                          {...(action.href.startsWith("http")
-                            ? { target: "_blank", rel: "noopener noreferrer" }
-                            : {})}
+                          muted
                         >
                           {action.label}
-                        </a>
-                      ) : (
-                        <span key={action.label} className="project-link-muted">
-                          {action.label}
-                        </span>
+                        </ProjectLink>
                       ),
                     )}
                   </div>

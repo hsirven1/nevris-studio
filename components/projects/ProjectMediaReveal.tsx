@@ -46,7 +46,23 @@ export function ProjectMediaReveal({
             aria-controls={panelId}
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? "See less ↑" : "See more ↓"}
+            <span>{open ? "See less" : "See more"}</span>
+            <svg
+              viewBox="0 0 12 12"
+              fill="none"
+              className={`size-[0.85em] shrink-0 transition-transform duration-300 ${
+                open ? "rotate-180" : ""
+              }`}
+              aria-hidden
+            >
+              <path
+                d="M2.5 4.25 L6 7.75 L9.5 4.25"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
 
           <div

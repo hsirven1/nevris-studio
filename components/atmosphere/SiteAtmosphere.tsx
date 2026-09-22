@@ -5,22 +5,60 @@ import {
   useAllowPathMorph,
   usePointerParallax,
 } from "@/components/motion/ambient";
-import { motion, useReducedMotion } from "motion/react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
+import { useRef, useSyncExternalStore } from "react";
+
+function subscribeNarrow(onChange: () => void) {
+  const mq = window.matchMedia("(max-width: 767px)");
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+}
+
+function getNarrowSnapshot() {
+  return window.matchMedia("(max-width: 767px)").matches;
+}
 
 /**
  * Minimal hero ground — quiet contour lines only.
  * No large circular fields competing with the sculpture.
+ * Mobile: scroll-driven drift replaces desktop pointer parallax.
  */
 export function SiteAtmosphere() {
+  const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
+  const isNarrow = useSyncExternalStore(
+    subscribeNarrow,
+    getNarrowSnapshot,
+    () => false,
+  );
   const { x, y } = usePointerParallax(14);
   const morph = useAllowPathMorph();
 
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const scrollY = useTransform(scrollYProgress, [0, 1], [0, -28]);
+  const scrollX = useTransform(scrollYProgress, [0, 1], [0, 10]);
+
+  const style =
+    reduce
+      ? undefined
+      : isNarrow
+        ? { x: scrollX, y: scrollY }
+        : { x, y };
+
   return (
     <motion.div
+      ref={ref}
       className="nv-ground-field pointer-events-none absolute inset-0 z-0 overflow-hidden"
       aria-hidden
-      style={reduce ? undefined : { x, y }}
+      style={style}
     >
       <AmbientDrift amplitude={5} duration={36} delay={1} className="absolute inset-0">
         <svg

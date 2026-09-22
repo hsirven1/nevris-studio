@@ -21,12 +21,12 @@ export const projects: Project[] = [
     website: "https://fanstories.co",
     actions: [
       {
-        label: "View FanStories ↗",
+        label: "View FanStories",
         href: "https://fanstories.co",
         interactive: true,
       },
       {
-        label: "View live demo ↗",
+        label: "View live demo",
         href: "https://fitness.fanstories.co",
         interactive: true,
       },
@@ -45,12 +45,12 @@ export const projects: Project[] = [
     website: "https://grandanglelere.com/",
     actions: [
       {
-        label: "Festival site ↗",
+        label: "Festival site",
         href: "https://grandanglelere.com/",
         interactive: true,
       },
       {
-        label: "App Store ↗",
+        label: "App Store",
         href: "https://apps.apple.com/us/app/grand-angle-l%C3%A9r%C3%A9/id6755940658",
         interactive: true,
       },
@@ -69,7 +69,7 @@ export const projects: Project[] = [
     website: "https://retirement-companion.vercel.app/home",
     actions: [
       {
-        label: "View Juno ↗",
+        label: "View Juno",
         href: "https://retirement-companion.vercel.app/home",
         interactive: true,
       },
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     website: "https://toy-program-dashboard.vercel.app/",
     actions: [
       {
-        label: "View Rook AI ↗",
+        label: "View Rook AI",
         href: "https://toy-program-dashboard.vercel.app/",
         interactive: true,
       },

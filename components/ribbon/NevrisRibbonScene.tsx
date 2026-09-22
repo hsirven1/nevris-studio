@@ -339,8 +339,14 @@ function RibbonRig({
     }
 
     const scroll = THREE.MathUtils.clamp(scrollProgressRef?.current ?? 0, 0, 1);
-    const scrollTilt = (scroll - 0.35) * 0.1;
-    const scrollLift = (scroll - 0.35) * -0.1;
+    // Mobile needs stronger scroll response — desktop pointer already adds life.
+    const scrollGain = mobileFraming ? 1.85 : 1;
+    const scrollTilt = (scroll - 0.35) * 0.1 * scrollGain;
+    const scrollLift = (scroll - 0.35) * -0.1 * scrollGain;
+    const scrollYaw = (scroll - 0.35) * (mobileFraming ? 0.22 : 0.05);
+    const scrollScale = mobileFraming
+      ? 1 + (scroll - 0.4) * -0.04
+      : 1;
     const dt = Math.min(delta, 0.08);
 
     if (animate) time.current += delta;
@@ -400,14 +406,32 @@ function RibbonRig({
       ? Math.sin(time.current * 0.26 + 0.5) * 0.05 * idleAmp
       : 0;
 
-    const rx = rest.rx + idleX + current.y * 1.35 + scrollTilt * 0.2;
-    const ry = rest.ry + idleY + current.x * 2.85 + scrollTilt * 0.12;
-    const rz = rest.rz + idleZ + current.x * 0.55;
-    const x = rest.x + scroll * 0.03 + current.x * 0.28 + idleDriftX;
-    const y = rest.y + scrollLift + idleLift + current.y * 0.32;
+    const rx =
+      rest.rx +
+      idleX +
+      current.y * 1.35 +
+      scrollTilt * (mobileFraming ? 0.85 : 0.2);
+    const ry =
+      rest.ry +
+      idleY +
+      current.x * 2.85 +
+      scrollTilt * (mobileFraming ? 0.55 : 0.12) +
+      scrollYaw;
+    const rz = rest.rz + idleZ + current.x * 0.55 + scrollTilt * (mobileFraming ? 0.18 : 0);
+    const x =
+      rest.x +
+      scroll * (mobileFraming ? 0.08 : 0.03) +
+      current.x * 0.28 +
+      idleDriftX;
+    const y =
+      rest.y +
+      scrollLift * (mobileFraming ? 1.6 : 1) +
+      idleLift +
+      current.y * 0.32;
     const z = rest.z + current.x * -0.18;
+    const scale = baseScale * scrollScale;
 
-    if (![rx, ry, rz, x, y, z].every(Number.isFinite)) {
+    if (![rx, ry, rz, x, y, z, scale].every(Number.isFinite)) {
       group.current.position.set(rest.x, rest.y, rest.z);
       group.current.rotation.set(rest.rx, rest.ry, rest.rz);
       group.current.scale.setScalar(baseScale);
@@ -421,7 +445,7 @@ function RibbonRig({
     group.current.position.x = x;
     group.current.position.y = y;
     group.current.position.z = z;
-    group.current.scale.setScalar(baseScale);
+    group.current.scale.setScalar(scale);
     group.current.visible = true;
   });
 

@@ -111,9 +111,23 @@ export default function HaroldPage() {
                             href={project.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-4 inline-block font-label text-[12px] tracking-[0.1em] text-ink/60 uppercase underline decoration-ink/20 underline-offset-4 hover:text-ink hover:decoration-ink"
+                            className="mt-4 inline-flex items-center gap-1.5 font-label text-[12px] tracking-[0.1em] text-ink/60 uppercase underline decoration-ink/20 underline-offset-4 hover:text-ink hover:decoration-ink"
                           >
-                            View project ↗
+                            <span>View project</span>
+                            <svg
+                              viewBox="0 0 12 12"
+                              fill="none"
+                              className="size-[0.85em] shrink-0 opacity-80"
+                              aria-hidden
+                            >
+                              <path
+                                d="M3.5 8.5 L8.5 3.5 M4.75 3.5 H8.5 V7.25"
+                                stroke="currentColor"
+                                strokeWidth="1.35"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
                           </a>
                         ) : null}
                       </div>
