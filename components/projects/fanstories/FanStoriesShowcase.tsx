@@ -1,142 +1,133 @@
 "use client";
 
-import {
-  PhoneStill,
-  PhoneVideo,
-} from "@/components/projects/fanstories/PhoneMedia";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "motion/react";
-import { useRef, useSyncExternalStore } from "react";
+import { ProductImage } from "@/components/projects/media/ProductImage";
+import { ProjectMediaReveal } from "@/components/projects/ProjectMediaReveal";
+import { useEffect, useRef, useState } from "react";
 
-const STILLS = {
-  fitpulse: "/work/fanstories/stills/fitpulse_hq.png",
-  food: "/work/fanstories/stills/food_hq.png",
-  sports: "/work/fanstories/stills/sports_hq.png",
-  videoPoster: "/work/fanstories/stills/fitpulse_hq.png",
+const VIDEO = {
+  src: "/work/fanstories/videos/primary.mp4",
+  poster: "/work/fanstories/stills/fitpulse_hq.png",
+  alt: "FanStories personalized recap sequence",
 } as const;
 
-function subscribeLg(onChange: () => void) {
-  const mq = window.matchMedia("(min-width: 1024px)");
-  mq.addEventListener("change", onChange);
-  return () => mq.removeEventListener("change", onChange);
-}
-
-function getLgSnapshot() {
-  return window.matchMedia("(min-width: 1024px)").matches;
-}
+const STILLS = [
+  {
+    src: "/work/fanstories/stills/fitpulse_hq.png",
+    alt: "FitPulse activity recap",
+    caption: "Fitness",
+  },
+  {
+    src: "/work/fanstories/stills/sports_hq.png",
+    alt: "FC Nordic 2026 fan recap",
+    caption: "Sports",
+  },
+  {
+    src: "/work/fanstories/stills/food_hq.png",
+    alt: "FreshPlate favorite dish",
+    caption: "Food",
+  },
+] as const;
 
 /**
- * Video center; fitness left, plate behind (readable), sports right.
+ * Showcase video — full original frame, no crop / zoom.
+ * Native asset ratio: 864×1370.
  */
-export function FanStoriesShowcase() {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const isLg = useSyncExternalStore(subscribeLg, getLgSnapshot, () => false);
+function ShowcaseVideo({ className = "" }: { className?: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const hostRef = useRef<HTMLDivElement>(null);
+  const [failed, setFailed] = useState(false);
+  const [inView, setInView] = useState(false);
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
+  useEffect(() => {
+    const el = hostRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "120px", threshold: 0.12 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
-  const videoY = useTransform(scrollYProgress, [0, 1], [16, -20]);
-  const leftY = useTransform(scrollYProgress, [0, 1], [22, -12]);
-  const rightY = useTransform(scrollYProgress, [0, 1], [28, -16]);
-  const supportY = useTransform(scrollYProgress, [0, 1], [10, -22]);
-
-  const video = (
-    <PhoneVideo
-      src="/work/fanstories/videos/primary.mp4"
-      poster={STILLS.videoPoster}
-      alt="FanStories personalized recap sequence"
-      className="w-full"
-      sizes={isLg ? "320px" : "68vw"}
-    />
-  );
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || failed) return;
+    if (inView) {
+      void video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [inView, failed]);
 
   return (
-    <div ref={ref} className="relative w-full">
-      {!isLg ? (
-        <div className="flex flex-col gap-4">
-          <div className="mx-auto w-[min(68%,19rem)]">{video}</div>
-          <div className="grid grid-cols-2 gap-3 px-1">
-            <PhoneStill
-              src={STILLS.fitpulse}
-              alt="FitPulse activity recap"
-              sizes="(max-width: 1023px) 40vw, 220px"
+    <div ref={hostRef} className={className}>
+      <div className="screenshot-frame relative isolate overflow-hidden rounded-[1.25rem] shadow-[0_18px_44px_-22px_rgba(17,17,16,0.3),0_6px_16px_-10px_rgba(17,17,16,0.14)] ring-1 ring-ink/10">
+        <div className="relative aspect-[864/1370] w-full">
+          {failed ? (
+            // Poster fallback when video cannot play
+            <img
+              src={VIDEO.poster}
+              alt={VIDEO.alt}
+              className="absolute inset-0 h-full w-full object-contain object-center"
             />
-            <PhoneStill
-              src={STILLS.food}
-              alt="FreshPlate favorite dish"
-              sizes="(max-width: 1023px) 40vw, 220px"
-            />
-          </div>
-          <PhoneStill
-            src={STILLS.sports}
-            alt="FC Nordic 2026 fan recap — L'Ultras"
-            className="mx-auto w-[min(48%,13.5rem)]"
-            sizes="(max-width: 1023px) 48vw, 200px"
-          />
+          ) : (
+            <video
+              ref={videoRef}
+              className="absolute inset-0 h-full w-full object-contain object-center"
+              poster={VIDEO.poster}
+              muted
+              playsInline
+              loop
+              autoPlay
+              preload="metadata"
+              controls={false}
+              aria-label={VIDEO.alt}
+              onError={() => setFailed(true)}
+            >
+              <source src={VIDEO.src} type="video/mp4" />
+            </video>
+          )}
         </div>
-      ) : (
-        <div className="relative mx-auto h-[min(64vh,34rem)] w-full max-w-[42rem]">
-          <div
-            className="pointer-events-none absolute top-[8%] left-[12%] h-[70%] w-[76%] rounded-[45%] bg-[radial-gradient(ellipse_at_center,rgba(102,244,255,0.14),transparent_72%)] blur-3xl"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute right-[4%] bottom-[0%] h-[42%] w-[48%] rounded-[40%] bg-[radial-gradient(ellipse_at_center,rgba(147,224,60,0.1),transparent_70%)] blur-3xl"
-            aria-hidden
-          />
-
-          {/* 1 — Fitness, left */}
-          <motion.div
-            className="absolute top-[4%] left-[0%] z-[2] w-[28%] -rotate-[5deg]"
-            style={reduce ? undefined : { y: leftY }}
-          >
-            <PhoneStill
-              src={STILLS.fitpulse}
-              alt="FitPulse activity recap"
-              sizes="240px"
-            />
-          </motion.div>
-
-          {/* 3 — Sports, right */}
-          <motion.div
-            className="absolute top-[6%] right-[0%] z-[2] w-[28%] rotate-[5deg]"
-            style={reduce ? undefined : { y: rightY }}
-          >
-            <PhoneStill
-              src={STILLS.sports}
-              alt="FC Nordic 2026 fan recap — L'Ultras"
-              sizes="240px"
-            />
-          </motion.div>
-
-          {/* 2 — Plate, behind video but clearly spaced / readable */}
-          <motion.div
-            className="absolute top-[38%] left-[8%] z-[3] w-[32%] origin-top -rotate-[3deg]"
-            style={reduce ? undefined : { y: supportY }}
-          >
-            <PhoneStill
-              src={STILLS.food}
-              alt="FreshPlate favorite dish"
-              sizes="260px"
-            />
-          </motion.div>
-
-          {/* Center — main video */}
-          <motion.div
-            className="absolute top-[0%] left-[34%] z-[5] w-[40%]"
-            style={reduce ? undefined : { y: videoY }}
-          >
-            {video}
-          </motion.div>
-        </div>
-      )}
+      </div>
     </div>
   );
 }
+
+function SecondaryStills() {
+  return (
+    <ul className="m-0 grid list-none grid-cols-3 gap-2.5 p-0 md:gap-3">
+      {STILLS.map((still) => (
+        <li key={still.src} className="min-w-0">
+          <div className="screenshot-frame relative aspect-[864/1370] overflow-hidden rounded-[0.85rem] ring-1 ring-ink/10">
+            <ProductImage
+              src={still.src}
+              alt={still.alt}
+              fill
+              sizes="120px"
+              className="object-cover object-top"
+            />
+          </div>
+          <p className="mt-2 mb-0 font-label text-[10px] tracking-[0.12em] text-ink/45 uppercase">
+            {still.caption}
+          </p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/**
+ * FanStories media — video hero, stills behind See more.
+ */
+export function FanStoriesShowcase() {
+  return (
+    <ProjectMediaReveal
+      className="mx-auto w-full max-w-[20rem] lg:max-w-[22rem] xl:max-w-[23.5rem]"
+      tone="light"
+      primary={<ShowcaseVideo className="w-full" />}
+      secondary={<SecondaryStills />}
+    />
+  );
+}
+
+export { ShowcaseVideo };

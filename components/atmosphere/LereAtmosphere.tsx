@@ -10,7 +10,7 @@ import {
 } from "motion/react";
 
 /**
- * Grand Angle — chalk / slate / warm washes as square, axis-aligned blocks.
+ * Grand Angle — Nevris brand planes (neutral / blue / clay).
  */
 export function LereAtmosphere() {
   const reduce = useReducedMotion();
@@ -34,7 +34,7 @@ export function LereAtmosphere() {
         className="absolute top-[4%] right-[-8%] h-[62%] w-[48%] max-md:right-[-14%] max-md:w-[58%]"
       >
         <motion.div
-          className="h-full w-full rounded-none bg-[rgba(239,239,234,0.055)] max-md:opacity-80"
+          className="h-full w-full rounded-[1.75rem] bg-[rgba(245,241,234,0.42)] max-md:opacity-90"
           style={reduce ? undefined : { x: planeX }}
         />
       </AmbientDrift>
@@ -47,19 +47,19 @@ export function LereAtmosphere() {
         className="absolute top-[28%] left-[-10%] h-[48%] w-[38%] max-md:hidden"
       >
         <motion.div
-          className="h-full w-full rounded-none bg-[rgba(120,145,160,0.11)]"
+          className="h-full w-full rounded-[1.75rem] bg-[rgba(109,140,166,0.4)]"
           style={reduce ? undefined : { x: warmX }}
         />
       </AmbientDrift>
 
-      {/* Warm print accent — square, distant */}
+      {/* Warm clay accent — square, distant */}
       <AmbientDrift
         amplitude={7}
         duration={34}
         delay={0.4}
         className="absolute right-[12%] bottom-[-10%] h-[40%] w-[34%] max-md:hidden"
       >
-        <div className="h-full w-full rounded-none bg-[rgba(176,148,118,0.12)]" />
+        <div className="h-full w-full rounded-[1.75rem] bg-[rgba(217,92,74,0.38)]" />
       </AmbientDrift>
 
       {/* Quiet crop marks — gallery framing */}

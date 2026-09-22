@@ -25,20 +25,20 @@ export default function HaroldPage() {
         <header className="gutter-x flex items-center justify-between py-7 md:py-9">
           <Link
             href="/"
-            className="font-mono text-[12px] tracking-[0.08em] text-ink/65 transition-colors hover:text-ink"
+            className="font-label text-[12px] tracking-[0.08em] text-ink/65 transition-colors hover:text-ink"
           >
             ← Nevris Studio
           </Link>
           <a
             href={`mailto:${email}`}
-            className="font-mono text-[11px] tracking-[0.12em] text-ink/45 uppercase transition-colors hover:text-ink/70"
+            className="font-label text-[11px] tracking-[0.12em] text-ink/45 uppercase transition-colors hover:text-ink/70"
           >
             {email}
           </a>
         </header>
 
         <section className="gutter-x pb-14 md:pb-20" aria-label="Introduction">
-          <p className="m-0 font-mono text-[11px] tracking-[0.16em] text-ink-45 uppercase">
+          <p className="m-0 font-label text-[11px] tracking-[0.16em] text-ink-45 uppercase">
             Product leader
           </p>
           <h1 className="mt-4 mb-0 max-w-[14ch] text-[clamp(2.5rem,7vw,4.25rem)] leading-[0.95] font-extrabold tracking-[-0.04em]">
@@ -54,7 +54,7 @@ export default function HaroldPage() {
           <div className="mt-9 flex flex-wrap gap-3">
             <a
               href="/#work"
-              className="inline-flex rounded-full bg-ink px-5 py-2.5 font-mono text-[12px] tracking-[0.12em] text-ground uppercase transition-colors hover:bg-ink/90"
+              className="inline-flex rounded-full bg-ink px-5 py-2.5 font-label text-[12px] tracking-[0.12em] text-ground uppercase transition-colors hover:bg-ink/90"
             >
               View selected work
             </a>
@@ -62,7 +62,7 @@ export default function HaroldPage() {
               <a
                 href={resumeHref}
                 download
-                className="inline-flex rounded-full border border-ink/25 px-5 py-2.5 font-mono text-[12px] tracking-[0.12em] text-ink uppercase transition-colors hover:border-ink/45"
+                className="inline-flex rounded-full border border-ink/25 px-5 py-2.5 font-label text-[12px] tracking-[0.12em] text-ink uppercase transition-colors hover:border-ink/45"
               >
                 Download résumé
               </a>
@@ -71,7 +71,7 @@ export default function HaroldPage() {
               href={linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-full border border-ink/25 px-5 py-2.5 font-mono text-[12px] tracking-[0.12em] text-ink uppercase transition-colors hover:border-ink/45"
+              className="inline-flex rounded-full border border-ink/25 px-5 py-2.5 font-label text-[12px] tracking-[0.12em] text-ink uppercase transition-colors hover:border-ink/45"
             >
               LinkedIn
             </a>
@@ -83,7 +83,7 @@ export default function HaroldPage() {
           aria-label="Selected work"
         >
           <div className="gutter-x py-12 md:py-16">
-            <h2 className="m-0 font-mono text-[11px] tracking-[0.16em] text-ink-45 uppercase">
+            <h2 className="m-0 font-label text-[11px] tracking-[0.16em] text-ink-45 uppercase">
               Selected work
             </h2>
             <p className="mt-3 mb-0 max-w-[36rem] text-[15px] leading-[1.5] text-ink/65 md:text-[16px]">
@@ -111,7 +111,7 @@ export default function HaroldPage() {
                             href={project.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-4 inline-block font-mono text-[12px] tracking-[0.1em] text-ink/60 uppercase underline decoration-ink/20 underline-offset-4 hover:text-ink hover:decoration-ink"
+                            className="mt-4 inline-block font-label text-[12px] tracking-[0.1em] text-ink/60 uppercase underline decoration-ink/20 underline-offset-4 hover:text-ink hover:decoration-ink"
                           >
                             View project ↗
                           </a>
@@ -135,7 +135,7 @@ export default function HaroldPage() {
           aria-label="Experience"
         >
           <div className="gutter-x py-12 md:py-16">
-            <h2 className="m-0 font-mono text-[11px] tracking-[0.16em] text-ink-45 uppercase">
+            <h2 className="m-0 font-label text-[11px] tracking-[0.16em] text-ink-45 uppercase">
               Experience
             </h2>
             <p className="mt-4 mb-0 max-w-[40rem] text-[17px] leading-[1.5] text-ink/80 md:text-[18px]">
@@ -145,7 +145,7 @@ export default function HaroldPage() {
               {page.experienceHighlights.map((item) => (
                 <li
                   key={item}
-                  className="rounded-full border border-ink/15 bg-ground/60 px-3.5 py-1.5 font-mono text-[11px] tracking-[0.1em] text-ink/70 uppercase"
+                  className="rounded-full border border-ink/15 bg-ground/60 px-3.5 py-1.5 font-label text-[11px] tracking-[0.1em] text-ink/70 uppercase"
                 >
                   {item}
                 </li>
@@ -167,7 +167,7 @@ export default function HaroldPage() {
                 <a
                   key={action.label}
                   href={action.href}
-                  className="inline-flex rounded-full bg-ink px-5 py-2.5 font-mono text-[12px] tracking-[0.12em] text-ground uppercase transition-colors hover:bg-ink/90"
+                  className="inline-flex rounded-full bg-ink px-5 py-2.5 font-label text-[12px] tracking-[0.12em] text-ground uppercase transition-colors hover:bg-ink/90"
                 >
                   {action.label}
                 </a>
@@ -176,13 +176,13 @@ export default function HaroldPage() {
                 href={linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex rounded-full border border-ink/25 px-5 py-2.5 font-mono text-[12px] tracking-[0.12em] text-ink uppercase transition-colors hover:border-ink/45"
+                className="inline-flex rounded-full border border-ink/25 px-5 py-2.5 font-label text-[12px] tracking-[0.12em] text-ink uppercase transition-colors hover:border-ink/45"
               >
                 LinkedIn
               </a>
               <a
                 href={`mailto:${email}`}
-                className="inline-flex rounded-full border border-ink/25 px-5 py-2.5 font-mono text-[12px] tracking-[0.12em] text-ink uppercase transition-colors hover:border-ink/45"
+                className="inline-flex rounded-full border border-ink/25 px-5 py-2.5 font-label text-[12px] tracking-[0.12em] text-ink uppercase transition-colors hover:border-ink/45"
               >
                 Email
               </a>
@@ -202,7 +202,7 @@ export default function HaroldPage() {
             </div>
             <Link
               href="/"
-              className="font-mono text-[11px] tracking-[0.12em] text-[#e8e6e1]/55 uppercase transition-colors hover:text-[#e8e6e1]/85"
+              className="font-label text-[11px] tracking-[0.12em] text-[#e8e6e1]/55 uppercase transition-colors hover:text-[#e8e6e1]/85"
             >
               ← Back to Nevris Studio
             </Link>

@@ -5,15 +5,10 @@ export const harold = {
   title: "Product leader and builder",
   location: "Montréal, Canada",
   email: site.email,
-  linkedin:
-    site.footer.social.find((s) => s.label === "LinkedIn")?.href ??
-    "https://www.linkedin.com/",
-  github:
-    site.footer.social.find((s) => s.label === "GitHub")?.href ??
-    "https://github.com/",
+  linkedin: "https://www.linkedin.com/in/harold-sirven/",
+  photo: "/harold/harold-sirven.png",
   /** Set to e.g. "/harold/harold-sirven-resume.pdf" once the file is in /public. */
   resumeHref: undefined as string | undefined,
-  aboutHref: "/harold",
 
   founder: {
     eyebrow: "Founder",

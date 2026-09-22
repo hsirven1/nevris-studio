@@ -12,7 +12,7 @@ export function ProjectIndexEntry({ project }: { project: Project }) {
         <div className="hidden text-[15px] text-ink-60 lg:block">
           {project.summary}
         </div>
-        <div className="font-mono text-[11px] tracking-[0.1em] text-ink-45 uppercase lg:text-right">
+        <div className="font-label text-[11px] tracking-[0.1em] text-ink-45 uppercase lg:text-right">
           {project.kind}
         </div>
         <p className="col-span-full text-[15px] leading-[1.5] text-ink-60 lg:hidden">

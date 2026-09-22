@@ -15,23 +15,23 @@ export const site = {
     title: "Discover our work",
   },
   howWeWork: {
-    label: "How we work",
-    headline: "Small team. Sharp decisions. Working software.",
+    label: "What we bring",
+    headline: "Product thinking. AI capability. Fast execution.",
     principles: [
       {
-        id: "01",
-        title: "Start with the real problem",
-        body: "We spend time understanding what actually needs solving before adding features, interfaces or AI.",
+        id: "shape",
+        title: "Shape the product",
+        body: "We help turn an idea into a clear product direction, from strategy and UX to prototyping and launch.",
       },
       {
-        id: "02",
-        title: "Make complexity disappear",
-        body: "The product can be technically ambitious. The experience should still feel obvious, calm and easy to use.",
+        id: "ai",
+        title: "Build with AI",
+        body: "We design AI features, agents, and workflows into the product where they actually make the experience better.",
       },
       {
-        id: "03",
-        title: "Build enough to know",
-        body: "We prototype early, put working software in front of people, and use what happens next to decide where to go.",
+        id: "speed",
+        title: "Move fast",
+        body: "Modern tools, rapid prototyping, and tight feedback loops help us get to working software quickly without cutting corners.",
       },
     ],
   },
@@ -48,18 +48,15 @@ export const site = {
     copyright: "© 2026 Nevris Studio",
     nav: [
       { label: "Our work", href: "#work" },
-      { label: "How we work", href: "#studio" },
+      { label: "What we bring", href: "#studio" },
       { label: "Contact", href: "#contact" },
-      { label: "About Harold", href: "/harold" },
     ],
     social: [
-      { label: "Email", href: "mailto:hello@nevris.studio" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/" },
-      { label: "GitHub", href: "https://github.com/" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/harold-sirven/" },
     ],
   },
   nav: [
     { label: "Our work", href: "#work" },
-    { label: "How we work", href: "#studio" },
+    { label: "What we bring", href: "#studio" },
   ],
 };

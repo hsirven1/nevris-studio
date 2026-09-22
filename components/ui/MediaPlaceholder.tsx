@@ -30,7 +30,7 @@ export function MediaPlaceholder({
 
   return (
     <div
-      className={`flex items-end p-3.5 font-mono text-[10px] tracking-[0.14em] uppercase ${solid ? "" : "placeholder-stripe"} ${className}`}
+      className={`flex items-end p-3.5 font-label text-[10px] tracking-[0.14em] uppercase ${solid ? "" : "placeholder-stripe"} ${className}`}
       style={style}
       role="img"
       aria-label={label}

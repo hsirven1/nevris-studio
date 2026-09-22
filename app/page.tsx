@@ -8,7 +8,7 @@ import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { SelectedWork } from "@/components/SelectedWork";
 import { SelectedWorkHeader } from "@/components/SelectedWorkHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { StatusBar } from "@/components/StatusBar";
+import { DesktopNavCapsule, StatusBar } from "@/components/StatusBar";
 
 export default function Home() {
   return (
@@ -32,6 +32,8 @@ export default function Home() {
           <Contact />
           <SiteFooter />
         </div>
+        {/* Outside page stacking contexts so it stays above Discover / work */}
+        <DesktopNavCapsule />
         <MobileBottomNav />
       </ContactProvider>
     </div>

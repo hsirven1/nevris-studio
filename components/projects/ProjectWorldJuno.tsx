@@ -1,9 +1,9 @@
 "use client";
 
 import type { Project } from "@/content/types";
-import { JunoAtmosphere } from "@/components/atmosphere/JunoAtmosphere";
 import { MobileJunoCase } from "@/components/mobile/MobileJunoCase";
 import { JunoShowcase } from "@/components/projects/juno/JunoShowcase";
+import { ProjectSectionPlane } from "@/components/projects/ProjectSectionPlane";
 import { ProjectTransition } from "@/components/motion/ProjectTransition";
 
 export function ProjectWorldJuno({ project }: { project: Project }) {
@@ -19,11 +19,11 @@ export function ProjectWorldJuno({ project }: { project: Project }) {
         <ProjectTransition kind="wipe">
           <section
             aria-label={project.name}
-            className="relative overflow-x-clip bg-juno-bg pt-[64px] pb-[72px] pl-[var(--work-gutter)] pr-[clamp(1.5rem,calc(var(--work-gutter)*0.72),var(--work-gutter))] text-juno-ink md:pt-[76px] md:pb-[88px]"
+            className="relative overflow-x-clip bg-juno-bg text-juno-ink"
           >
-            <JunoAtmosphere />
+            <ProjectSectionPlane side="left" toneClass="bg-juno-coral/28" />
 
-            <div className="relative z-10 grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.42fr)] lg:gap-12 xl:gap-16">
+            <div className="relative z-10 grid grid-cols-1 items-start gap-10 pt-[64px] pb-[72px] pl-[var(--work-gutter)] pr-[clamp(1.5rem,calc(var(--work-gutter)*0.72),var(--work-gutter))] md:pt-[76px] md:pb-[88px] lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.42fr)] lg:gap-12 xl:gap-16">
               <div className="lg:sticky lg:top-[7rem] lg:max-w-[38rem]">
                 <h3 className="type-juno-title m-0 font-serif font-normal tracking-[-0.02em]">
                   {project.name}

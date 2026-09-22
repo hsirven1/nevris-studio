@@ -26,7 +26,7 @@ export const projects: Project[] = [
         interactive: true,
       },
       {
-        label: "View fitness experience ↗",
+        label: "View live demo ↗",
         href: "https://fitness.fanstories.co",
         interactive: true,
       },

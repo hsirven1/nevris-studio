@@ -10,7 +10,7 @@ import {
 } from "motion/react";
 
 /**
- * FanStories — peach + light panel planes as square, axis-aligned blocks.
+ * FanStories — Nevris brand planes (yellow / blue / clay) as quiet square blocks.
  */
 export function FanStoriesAtmosphere() {
   const reduce = useReducedMotion();
@@ -26,19 +26,19 @@ export function FanStoriesAtmosphere() {
       className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
       aria-hidden
     >
-      {/* Pale brand mass — frames the product column */}
+      {/* Warm yellow — frames the product column */}
       <AmbientDrift
         amplitude={12}
         duration={26}
         className="absolute top-[6%] right-[-10%] h-[68%] w-[52%] max-md:right-[-16%] max-md:h-[58%] max-md:w-[64%]"
       >
         <motion.div
-          className="h-full w-full rounded-none bg-[rgba(255,192,103,0.28)] max-md:opacity-70"
+          className="h-full w-full rounded-[1.75rem] bg-[rgba(244,196,106,0.55)] max-md:opacity-90"
           style={reduce ? undefined : { x: planeX }}
         />
       </AmbientDrift>
 
-      {/* Light neutral plane — softens the text side */}
+      {/* Warm neutral — softens the text side */}
       <AmbientDrift
         amplitude={9}
         duration={30}
@@ -46,19 +46,19 @@ export function FanStoriesAtmosphere() {
         className="absolute top-[22%] left-[-8%] h-[44%] w-[36%] max-md:hidden"
       >
         <motion.div
-          className="h-full w-full rounded-none bg-[rgba(255,255,255,0.42)]"
+          className="h-full w-full rounded-[1.75rem] bg-[rgba(245,241,234,0.9)]"
           style={reduce ? undefined : { x: coolX }}
         />
       </AmbientDrift>
 
-      {/* Quiet sport accent — square, not a soft blob */}
+      {/* Clay red — quiet secondary mass */}
       <AmbientDrift
         amplitude={7}
         duration={32}
         delay={0.5}
         className="absolute bottom-[-6%] right-[18%] h-[34%] w-[30%] max-md:hidden"
       >
-        <div className="h-full w-full rounded-none bg-[rgba(147,224,60,0.14)]" />
+        <div className="h-full w-full rounded-[1.75rem] bg-[rgba(217,92,74,0.42)]" />
       </AmbientDrift>
 
       <AmbientDrift amplitude={5} duration={34} className="absolute inset-0">
@@ -70,12 +70,12 @@ export function FanStoriesAtmosphere() {
         >
           <path
             d="M40 210 H 320"
-            stroke="rgba(17,17,16,0.12)"
+            stroke="rgba(17,17,17,0.12)"
             strokeWidth="1.25"
           />
           <path
             d="M-20 560 C 220 500, 380 620, 600 560 S 980 460, 1220 540 S 1400 600, 1520 540"
-            stroke="rgba(17,17,16,0.08)"
+            stroke="rgba(109,140,166,0.28)"
             strokeWidth="1.2"
           />
         </svg>

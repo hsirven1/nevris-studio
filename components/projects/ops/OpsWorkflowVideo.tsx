@@ -66,7 +66,7 @@ export function OpsWorkflowVideo() {
   return (
     <div
       ref={hostRef}
-      className="group relative overflow-hidden rounded-[0.85rem] bg-[#f4f3f0] shadow-[0_18px_44px_-22px_rgba(17,17,16,0.26),0_4px_14px_-8px_rgba(17,17,16,0.1)] ring-1 ring-ink/10"
+      className="group relative overflow-hidden rounded-[0.85rem] bg-[#1a1a18] shadow-[0_20px_48px_-22px_rgba(0,0,0,0.55),0_4px_14px_-8px_rgba(0,0,0,0.35)] ring-1 ring-white/10"
     >
       {failed ? (
         // eslint-disable-next-line @next/next/no-img-element
@@ -80,7 +80,7 @@ export function OpsWorkflowVideo() {
       ) : (
         <video
           ref={videoRef}
-          className="block h-auto w-full bg-[#f4f3f0]"
+          className="block h-auto w-full bg-[#1a1a18]"
           poster={POSTER_SRC}
           muted
           playsInline

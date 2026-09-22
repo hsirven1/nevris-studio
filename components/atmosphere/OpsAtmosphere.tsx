@@ -10,7 +10,7 @@ import {
 } from "motion/react";
 
 /**
- * Rook — slate / panel / cyan as square, axis-aligned blocks.
+ * Rook — Nevris brand planes (blue / warm neutral / yellow).
  */
 export function OpsAtmosphere() {
   const reduce = useReducedMotion();
@@ -33,7 +33,7 @@ export function OpsAtmosphere() {
         className="absolute top-[-8%] right-[-8%] h-[58%] w-[46%] max-md:right-[-14%] max-md:w-[58%]"
       >
         <motion.div
-          className="h-full w-full rounded-none bg-[rgba(148,168,186,0.22)] max-md:opacity-70"
+          className="h-full w-full rounded-[1.75rem] bg-[rgba(109,140,166,0.48)] max-md:opacity-90"
           style={reduce ? undefined : { x: planeX }}
         />
       </AmbientDrift>
@@ -46,19 +46,19 @@ export function OpsAtmosphere() {
         className="absolute top-[36%] left-[-6%] h-[42%] w-[32%] max-md:hidden"
       >
         <motion.div
-          className="h-full w-full rounded-none bg-[rgba(228,226,220,0.75)]"
+          className="h-full w-full rounded-[1.75rem] bg-[rgba(245,241,234,0.92)]"
           style={reduce ? undefined : { x: coolX }}
         />
       </AmbientDrift>
 
-      {/* Quiet cyan — cool balance */}
+      {/* Quiet yellow — warm balance */}
       <AmbientDrift
         amplitude={6}
         duration={32}
         delay={0.6}
         className="absolute right-[22%] bottom-[-8%] h-[36%] w-[28%] max-md:hidden"
       >
-        <div className="h-full w-full rounded-none bg-[rgba(102,196,255,0.16)]" />
+        <div className="h-full w-full rounded-[1.75rem] bg-[rgba(244,196,106,0.46)]" />
       </AmbientDrift>
 
       {/* Geometric alignment — one horizontal + one vertical hairline */}

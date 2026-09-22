@@ -63,7 +63,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
     "mt-2 w-full rounded-[10px] border border-ink/15 bg-ground px-3.5 py-3 text-[15px] text-ink outline-none transition-[border-color,box-shadow] placeholder:text-ink/35 focus:border-sky/50 focus:shadow-[0_0_0_3px_rgba(102,196,255,0.28)]";
 
   const labelClass =
-    "block font-mono text-[11px] tracking-[0.12em] text-ink-45 uppercase";
+    "block font-label text-[11px] tracking-[0.12em] text-ink-45 uppercase";
 
   return (
     <div
@@ -85,7 +85,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
       >
         <div className="flex items-start justify-between gap-4 border-b border-ink/10 px-6 pt-6 pb-4 sm:px-7">
           <div>
-            <p className="m-0 font-mono text-[11px] tracking-[0.14em] text-ink-45 uppercase">
+            <p className="m-0 font-label text-[11px] tracking-[0.14em] text-ink-45 uppercase">
               Project inquiry
             </p>
             <h3
@@ -125,7 +125,7 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="mt-8 rounded-full border border-ink px-5 py-2.5 font-mono text-[12px] tracking-[0.12em] text-ink uppercase transition-colors hover:bg-ink hover:text-ground"
+              className="mt-8 rounded-full border border-ink px-5 py-2.5 font-label text-[12px] tracking-[0.12em] text-ink uppercase transition-colors hover:bg-ink hover:text-ground"
             >
               Close
             </button>
@@ -197,13 +197,13 @@ export function ContactModal({ open, onClose }: ContactModalProps) {
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-full px-4 py-2.5 font-mono text-[12px] tracking-[0.12em] text-ink/55 uppercase transition-colors hover:text-ink"
+                className="rounded-full px-4 py-2.5 font-label text-[12px] tracking-[0.12em] text-ink/55 uppercase transition-colors hover:text-ink"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="rounded-full bg-ink px-6 py-3 font-mono text-[12px] tracking-[0.12em] text-ground uppercase transition-colors hover:bg-accent"
+                className="rounded-full bg-ink px-6 py-3 font-label text-[12px] tracking-[0.12em] text-ground uppercase transition-colors hover:bg-accent"
               >
                 Send project inquiry
               </button>

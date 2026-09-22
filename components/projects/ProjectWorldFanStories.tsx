@@ -1,9 +1,9 @@
 "use client";
 
 import type { Project } from "@/content/types";
-import { FanStoriesAtmosphere } from "@/components/atmosphere/FanStoriesAtmosphere";
 import { MobileFanStoriesCase } from "@/components/mobile/MobileFanStoriesCase";
 import { FanStoriesShowcase } from "@/components/projects/fanstories/FanStoriesShowcase";
+import { ProjectSectionPlane } from "@/components/projects/ProjectSectionPlane";
 import { ProjectTransition } from "@/components/motion/ProjectTransition";
 
 export function ProjectWorldFanStories({ project }: { project: Project }) {
@@ -17,12 +17,12 @@ export function ProjectWorldFanStories({ project }: { project: Project }) {
         <ProjectTransition kind="frames" className="relative">
           <section
             aria-label={project.name}
-            className="relative overflow-x-clip bg-ground pt-[56px] pb-[72px] pl-[var(--work-gutter)] pr-[clamp(1.5rem,calc(var(--work-gutter)*0.72),var(--work-gutter))] text-ink md:pb-[88px]"
+            className="relative overflow-x-clip bg-ground text-ink"
           >
-            <FanStoriesAtmosphere />
+            <ProjectSectionPlane side="left" toneClass="bg-peach/48" />
 
-            <div className="relative z-10 grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.35fr)] lg:gap-12 xl:gap-16">
-              <div className="lg:sticky lg:top-[7rem] lg:max-w-[38rem]">
+            <div className="relative z-10 grid grid-cols-1 items-center gap-10 pt-[56px] pb-[72px] pl-[var(--work-gutter)] pr-[clamp(1.5rem,calc(var(--work-gutter)*0.72),var(--work-gutter))] md:pb-[88px] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.38fr)] lg:gap-12 xl:gap-16">
+              <div className="max-w-[34rem] lg:sticky lg:top-[7rem]">
                 <h3 className="type-wilder-title m-0 font-bold">
                   {project.name}
                 </h3>
@@ -36,7 +36,7 @@ export function ProjectWorldFanStories({ project }: { project: Project }) {
                 </p>
 
                 <div className="project-links project-copy-links">
-                  {project.actions?.map((action) =>
+                  {project.actions?.slice(0, 2).map((action) =>
                     action.interactive ? (
                       <a
                         key={action.label}
@@ -57,7 +57,7 @@ export function ProjectWorldFanStories({ project }: { project: Project }) {
                 </div>
               </div>
 
-              <div className="min-w-0 lg:pt-2">
+              <div className="flex min-w-0 justify-center">
                 <FanStoriesShowcase />
               </div>
             </div>

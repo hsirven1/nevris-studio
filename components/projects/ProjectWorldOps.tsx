@@ -1,8 +1,8 @@
 "use client";
 
 import type { Project } from "@/content/types";
-import { OpsAtmosphere } from "@/components/atmosphere/OpsAtmosphere";
 import { MobileRookCase } from "@/components/mobile/MobileRookCase";
+import { ProjectSectionPlane } from "@/components/projects/ProjectSectionPlane";
 import { ProjectTransition } from "@/components/motion/ProjectTransition";
 import { OpsShowcase } from "@/components/projects/ops/OpsShowcase";
 
@@ -17,12 +17,16 @@ export function ProjectWorldOps({ project }: { project: Project }) {
         <ProjectTransition kind="frames">
           <section
             aria-label={project.name}
-            className="relative overflow-x-clip border-t border-ink/15 bg-ground pt-[56px] pb-[64px] pl-[var(--work-gutter)] pr-[clamp(1.5rem,calc(var(--work-gutter)*0.72),var(--work-gutter))] text-ink md:pt-[68px] md:pb-[80px]"
+            className="relative overflow-x-clip bg-studio-bg text-studio-text"
           >
-            <OpsAtmosphere />
+            <ProjectSectionPlane
+              side="left"
+              toneClass="bg-[rgba(24,120,184,0.42)]"
+              className="md:w-[min(50%,38rem)] lg:w-[min(48%,40rem)]"
+            />
 
-            <div className="relative z-10 grid grid-cols-1 items-start gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.48fr)] lg:gap-12 xl:gap-14">
-              <div className="lg:sticky lg:top-[7rem] lg:max-w-[38rem]">
+            <div className="relative z-10 grid grid-cols-1 items-start gap-10 pt-[56px] pb-[64px] pl-[var(--work-gutter)] pr-[clamp(1.5rem,calc(var(--work-gutter)*0.72),var(--work-gutter))] md:pt-[68px] md:pb-[80px] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.48fr)] lg:gap-12 xl:gap-14">
+              <div className="lg:sticky lg:top-[7rem] lg:max-w-[36rem]">
                 <h3 className="type-ops-title m-0 font-bold">
                   {project.name}
                 </h3>

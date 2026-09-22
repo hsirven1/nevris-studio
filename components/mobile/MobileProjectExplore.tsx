@@ -35,7 +35,7 @@ export function MobileProjectExplore({
     <div className={className}>
       <button
         type="button"
-        className={`mt-7 inline-flex items-center gap-2 rounded-full border bg-transparent px-5 py-2.5 font-mono text-[12px] tracking-[0.14em] uppercase transition-colors ${toneClass[tone]}`}
+        className={`mt-7 inline-flex items-center gap-2 rounded-full border bg-transparent px-5 py-2.5 font-label text-[12px] tracking-[0.14em] uppercase transition-colors ${toneClass[tone]}`}
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}

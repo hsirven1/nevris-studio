@@ -8,7 +8,7 @@ type SectionId = "work" | "studio" | "contact";
 
 const items: { id: SectionId; label: string }[] = [
   { id: "work", label: "Our work" },
-  { id: "studio", label: "How we work" },
+  { id: "studio", label: "What we bring" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -72,7 +72,7 @@ export function MobileBottomNav() {
               key={item.id}
               type="button"
               onClick={() => go(item)}
-                className={`min-w-0 flex-1 rounded-full px-2 py-2.5 text-center font-mono text-[12.5px] tracking-[0.05em] uppercase transition-colors ${
+                className={`min-w-0 flex-1 rounded-full px-2 py-2.5 text-center font-label text-[12px] tracking-[0.08em] uppercase transition-colors ${
                 isContact
                   ? isActive
                     ? "bg-accent-pale text-ink"

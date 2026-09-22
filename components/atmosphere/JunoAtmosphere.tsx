@@ -10,7 +10,7 @@ import {
 } from "motion/react";
 
 /**
- * Juno — coral + cool wash as square, axis-aligned blocks.
+ * Juno — Nevris brand planes (clay / blue / yellow) as quiet square blocks.
  */
 export function JunoAtmosphere() {
   const reduce = useReducedMotion();
@@ -32,7 +32,7 @@ export function JunoAtmosphere() {
         className="absolute -top-[18%] -left-[12%] h-[72%] w-[50%] max-md:h-[58%] max-md:w-[62%]"
       >
         <motion.div
-          className="h-full w-full rounded-none bg-juno-coral opacity-[0.18] max-md:opacity-[0.12]"
+          className="h-full w-full rounded-[1.75rem] bg-[rgba(217,92,74,0.48)] max-md:opacity-55"
           style={reduce ? undefined : { x: planeX }}
         />
       </AmbientDrift>
@@ -44,7 +44,7 @@ export function JunoAtmosphere() {
         className="absolute top-[8%] right-[-12%] h-[56%] w-[44%] max-md:hidden"
       >
         <motion.div
-          className="h-full w-full rounded-none bg-[rgba(168,196,214,0.35)]"
+          className="h-full w-full rounded-[1.75rem] bg-[rgba(109,140,166,0.45)]"
           style={reduce ? undefined : { x: warmX }}
         />
       </AmbientDrift>
@@ -55,7 +55,7 @@ export function JunoAtmosphere() {
         delay={0.6}
         className="absolute bottom-[-8%] left-[28%] h-[40%] w-[36%] max-md:hidden"
       >
-        <div className="h-full w-full rounded-none bg-[rgba(196,214,168,0.28)]" />
+        <div className="h-full w-full rounded-[1.75rem] bg-[rgba(244,196,106,0.48)]" />
       </AmbientDrift>
 
       <AmbientDrift amplitude={6} duration={34} className="absolute inset-0">

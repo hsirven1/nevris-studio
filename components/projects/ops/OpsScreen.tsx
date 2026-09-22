@@ -18,7 +18,7 @@ export function OpsScreen({
 }) {
   return (
     <div
-      className={`screenshot-frame overflow-hidden rounded-[0.85rem] bg-[#f4f3f0] shadow-[0_18px_44px_-20px_rgba(17,17,16,0.28),0_4px_14px_-6px_rgba(17,17,16,0.12)] ring-1 ring-ink/10 ${className}`}
+      className={`screenshot-frame overflow-hidden rounded-[0.85rem] bg-[#1a1a18] shadow-[0_20px_48px_-22px_rgba(0,0,0,0.55),0_4px_14px_-8px_rgba(0,0,0,0.35)] ring-1 ring-white/10 ${className}`}
     >
       <div className={`relative w-full ${aspectClass}`}>
         <ProductImage
