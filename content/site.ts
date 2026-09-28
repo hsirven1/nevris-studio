@@ -16,22 +16,22 @@ export const site = {
   },
   howWeWork: {
     label: "What we bring",
-    headline: "Product thinking. AI capability. Fast execution.",
+    headline: "Here’s what we actually do.",
     principles: [
       {
         id: "shape",
-        title: "Shape the product",
-        body: "We help turn an idea into a clear product direction, from strategy and UX to prototyping and launch.",
+        title: "Product direction",
+        body: "We help figure out what to build, who it’s for, and what matters most before the work gets expensive.",
       },
       {
         id: "ai",
-        title: "Build with AI",
-        body: "We design AI features, agents, and workflows into the product where they actually make the experience better.",
+        title: "AI that earns its place",
+        body: "We use AI where it improves the product, from agents and workflows to features people actually use.",
       },
       {
         id: "speed",
-        title: "Move fast",
-        body: "Modern tools, rapid prototyping, and tight feedback loops help us get to working software quickly without cutting corners.",
+        title: "Working software, quickly",
+        body: "We prototype fast, test early, and get real software in front of people without unnecessary process.",
       },
     ],
   },

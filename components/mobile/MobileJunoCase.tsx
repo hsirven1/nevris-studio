@@ -3,7 +3,7 @@
 import type { Project } from "@/content/types";
 import { JunoShowcase } from "@/components/projects/juno/JunoShowcase";
 import { ProjectLink } from "@/components/projects/ProjectLink";
-import { ProjectSectionPlane } from "@/components/projects/ProjectSectionPlane";
+import { ProjectTextPanel } from "@/components/projects/ProjectTextPanel";
 
 function ProjectLinks({ project }: { project: Project }) {
   if (!project.actions?.length) return null;
@@ -44,25 +44,21 @@ export function MobileJunoCase({ project }: { project: Project }) {
       aria-label={project.name}
       className="relative overflow-x-clip bg-juno-bg px-5 pt-14 pb-16 text-juno-ink"
     >
-      <ProjectSectionPlane
-        side="left"
-        toneClass="bg-juno-coral/28"
-        size="mobile"
-      />
-
       <div className="relative z-10">
-        <h3 className="m-0 font-serif text-[2.65rem] leading-[0.95] font-normal tracking-[-0.02em]">
-          {project.name}
-        </h3>
-        <p className="mt-4 mb-0 max-w-[28ch] font-serif text-[1.4rem] leading-[1.25] font-normal tracking-[-0.015em]">
-          {project.positioning}
-        </p>
-        <p className="mt-5 mb-0 max-w-[36ch] text-[17px] leading-[1.5] text-juno-ink/75">
-          {shortCopy}
-        </p>
-        <ProjectLinks project={project} />
+        <ProjectTextPanel toneClass="bg-juno-coral/28" variant="mobile" className="mr-8">
+          <h3 className="m-0 font-serif text-[2.65rem] leading-[0.95] font-normal tracking-[-0.02em]">
+            {project.name}
+          </h3>
+          <p className="mt-4 mb-0 max-w-[28ch] font-serif text-[1.4rem] leading-[1.25] font-normal tracking-[-0.015em]">
+            {project.positioning}
+          </p>
+          <p className="mt-5 mb-0 max-w-[36ch] text-[17px] leading-[1.5] text-juno-ink/75">
+            {shortCopy}
+          </p>
+          <ProjectLinks project={project} />
+        </ProjectTextPanel>
 
-        <div className="mt-10">
+        <div className="mt-16">
           <JunoShowcase />
         </div>
       </div>
