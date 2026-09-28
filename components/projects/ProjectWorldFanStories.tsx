@@ -18,7 +18,7 @@ export function ProjectWorldFanStories({ project }: { project: Project }) {
         <ProjectTransition kind="frames" className="relative">
           <section
             aria-label={project.name}
-            className="relative overflow-x-clip bg-ground text-ink"
+            className="relative overflow-x-clip bg-juno-bg text-ink"
           >
             <div className="relative z-10 grid grid-cols-1 items-center gap-x-16 gap-y-20 pt-[56px] pb-[72px] pl-[var(--work-gutter)] pr-[clamp(1.5rem,calc(var(--work-gutter)*0.72),var(--work-gutter))] md:pb-[88px] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.38fr)] lg:gap-16 xl:gap-20">
               <ProjectTextPanel

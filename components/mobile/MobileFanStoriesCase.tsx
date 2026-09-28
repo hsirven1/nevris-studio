@@ -39,7 +39,7 @@ export function MobileFanStoriesCase({ project }: { project: Project }) {
   return (
     <section
       aria-label={project.name}
-      className="relative overflow-x-clip bg-ground px-5 pt-14 pb-16 text-ink"
+      className="relative overflow-x-clip bg-juno-bg px-5 pt-14 pb-16 text-ink"
     >
       <div className="relative z-10">
         <ProjectTextPanel toneClass="bg-peach/48" variant="mobile" className="mr-8">
